@@ -1,0 +1,34 @@
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+#components-layout-demo-top .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+.ant-menu-vertical.ant-menu-sub:not([class*="-active"]),
+.ant-menu-vertical-left.ant-menu-sub:not([class*="-active"]),
+.ant-menu-vertical-right.ant-menu-sub:not([class*="-active"]) {
+  text-align: right;
+}
+.ant-layout-rtl {
+  height: 100%;
+  height: fit-content;
+}
+.ant-layout-header {
+  padding: 0 !important;
+}
+/* .site-layout-content {
+  height: 100%;
+}*/
+.ant-layout-content {
+  padding: 50px !important;
+}
