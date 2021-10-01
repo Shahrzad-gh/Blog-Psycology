@@ -1,7 +1,16 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
+html,
+body {
+  height: 100vh !important;
 
+  direction: rtl;
+}
+#root {
+  height: 100vh;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
