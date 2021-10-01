@@ -1,0 +1,5 @@
+.ant-menu-vertical.ant-menu-sub:not([class*="-active"]),
+.ant-menu-vertical-left.ant-menu-sub:not([class*="-active"]),
+.ant-menu-vertical-right.ant-menu-sub:not([class*="-active"]) {
+  text-align: right;
+}
