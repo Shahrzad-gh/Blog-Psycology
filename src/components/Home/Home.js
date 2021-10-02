@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb } from "antd";
 import { AppstoreOutlined, HomeOutlined } from "@ant-design/icons";
 import "./Home.css";
 import "antd/dist/antd.css";
-import BlogList from "./Blog/BlogList";
+import ArticleList from "./Article/ArticleList";
 
 const { SubMenu } = Menu;
 
@@ -58,7 +58,7 @@ function Home() {
             <Breadcrumb.Item>برنامه</Breadcrumb.Item>
           </Breadcrumb> */}
           <div className="site-layout-content">
-            <BlogList />
+            <ArticleList />
           </div>
         </Content>
         {/* <Footer>Footer</Footer> */}
