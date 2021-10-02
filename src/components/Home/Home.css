@@ -20,7 +20,7 @@
   text-align: right;
 }
 .ant-layout-rtl {
-  height: 100%;
+  height: 100% !important;
   height: fit-content;
 }
 .ant-layout-header {
