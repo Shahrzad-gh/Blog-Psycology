@@ -1,34 +1,97 @@
-.site-layout-content {
-  min-height: 280px;
-  padding: 24px;
-  background: #fff;
+.header {
+  margin-top: 60px;
 }
-#components-layout-demo-top .logo {
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+.titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #444;
+  font-family: "Almarai", sans-serif;
 }
-.ant-row-rtl #components-layout-demo-top .logo {
-  float: right;
-  margin: 16px 0 16px 24px;
+.titleSm {
+  position: absolute;
+  top: 18%;
+  font-size: 20px;
 }
-.ant-menu-vertical.ant-menu-sub:not([class*="-active"]),
-.ant-menu-vertical-left.ant-menu-sub:not([class*="-active"]),
-.ant-menu-vertical-right.ant-menu-sub:not([class*="-active"]) {
-  text-align: right;
+.titleSm {
+  position: absolute;
+  top: 20%;
+  font-size: 100px;
 }
-.ant-layout-rtl {
-  height: 100% !important;
+.headerImg {
+  width: 100%;
+  height: 450px;
+  margin-top: 80px;
+  object-fit: cover;
+}
+
+.main {
+  display: flex;
+}
+.posts {
+  flex-grow: 9;
+}
+.sidebar {
+  flex: 3;
   height: fit-content;
+  margin: 20px;
+  padding-bottom: 30px;
+  background-color: #fdfbfb;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.ant-layout-header {
-  padding: 0 !important;
+.sidebarItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-/* .site-layout-content {
-  height: 100%;
-}*/
-.ant-layout-content {
-  padding: 50px !important;
+.sidebarTitle {
+  margin: 10px;
+  margin: 10px;
+  width: 250px;
+  border-top: 1px solid #a7a7a4;
+  border-bottom: 1px solid #a7a7a4;
+  font-family: "Almarai", sans-serif;
+  font-family: "El Messiri", sans-serif;
+  font-size: 16px;
+  color: #222;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+}
+
+.sidebarItem > img {
+  margin-top: 15px;
+  width: 250px;
+  height: 250px;
+}
+.sidebarItem > p {
+  padding: 30px;
+}
+
+.sidebarList {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  margin-bottom: 30px;
+}
+.sidebarListItem {
+  width: 50%;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.sidebarSocial {
+  margin-top: 5px;
+  /* width: 250px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarIcon {
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
 }

@@ -1,69 +1,58 @@
-import React, { useState } from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
-import { AppstoreOutlined, HomeOutlined } from "@ant-design/icons";
+import React from "react";
 import "./Home.css";
-import "antd/dist/antd.css";
-import ArticleList from "./Article/ArticleList";
-
-const { SubMenu } = Menu;
 
 function Home() {
-  const { Header, Footer, Sider, Content } = Layout;
-
-  const [activeMenu, setActiveMenu] = useState({ current: "mail" });
-
-  const handleClick = (e) => {
-    setActiveMenu({ current: e.target.key });
-  };
   return (
-    <Layout>
-      <Header>
-        <Menu
-          onClick={handleClick}
-          selectedKeys={[activeMenu]}
-          mode="horizontal"
-        >
-          <Menu.Item key="mail" icon={<HomeOutlined />}>
-            خانه
-          </Menu.Item>
-          <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-            پادکست
-          </Menu.Item>
-          <SubMenu key="SubMenu" title="مقاله">
-            <Menu.ItemGroup title="Item 1">
-              <Menu.Item key="setting:1">Option 1</Menu.Item>
-              <Menu.Item key="setting:2">Option 2</Menu.Item>
-            </Menu.ItemGroup>
-            <Menu.ItemGroup title="Item 2">
-              <Menu.Item key="setting:3">Option 3</Menu.Item>
-              <Menu.Item key="setting:4">Option 4</Menu.Item>
-            </Menu.ItemGroup>
-          </SubMenu>
-          <Menu.Item key="alipay">
-            <a
-              href="https://ant.design"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              وبلاگ
-            </a>
-          </Menu.Item>
-        </Menu>
-      </Header>
-      <Layout>
-        <Content style={{ padding: "0 50px" }}>
-          {/* <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>خانه</Breadcrumb.Item>
-            <Breadcrumb.Item>لیست</Breadcrumb.Item>
-            <Breadcrumb.Item>برنامه</Breadcrumb.Item>
-          </Breadcrumb> */}
-          <div className="site-layout-content">
-            <ArticleList />
+    <>
+      <div className="header">
+        <div className="titles">
+          <span className="titleSm">وبلاگ</span>
+          <span className="titleLg">روانشناسی</span>
+        </div>
+
+        <img
+          className="headerImg"
+          src="https://image.freepik.com/free-photo/diverse-people-supporting-group-session_53876-130270.jpg"
+          alt="وبلاگ روانشناسی"
+          title="روانشناسی"
+        />
+      </div>
+      <div class="main">
+        <div className="posts">posts</div>
+
+        <div className="sidebar">
+          <div className="sidebarItem">
+            <div className="sidebarTitle">درباره من</div>
+            <img
+              src="https://image.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg"
+              alt="پروفایل"
+            />
+            <p>
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+              استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
+              در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
+              نیاز و کاربردهای متنوع با هدف بهبود
+            </p>
           </div>
-        </Content>
-        {/* <Footer>Footer</Footer> */}
-      </Layout>
-    </Layout>
+          <div className="sidebarItem">
+            <div className="sidebarTitle">موضوعات</div>
+            <ul className="sidebarList">
+              <li className="sidebarListItem">جسم</li>
+              <li className="sidebarListItem">ذهن</li>
+              <li className="sidebarListItem">خویشتن</li>
+            </ul>
+          </div>
+          <div className="sidebarItem">
+            <div className="sidebarTitle">ما را دنبال کنید</div>
+            <div className="sidebarSocial">
+              <i className="sidebarIcon fab fa-instagram-square"></i>
+              <i className="sidebarIcon fab fa-facebook-square"></i>
+              <i className="sidebarIcon fab fa-twitter-square"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
