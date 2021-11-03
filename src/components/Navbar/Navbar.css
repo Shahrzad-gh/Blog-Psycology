@@ -1,5 +1,42 @@
-.ant-menu-vertical.ant-menu-sub:not([class*="-active"]),
-.ant-menu-vertical-left.ant-menu-sub:not([class*="-active"]),
-.ant-menu-vertical-right.ant-menu-sub:not([class*="-active"]) {
-  text-align: right;
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+ul {
+  display: inline-flex;
+  list-style: none;
+  padding-inline-end: 40px;
+  align-items: center;
+  margin: 0;
+}
+li {
+  padding: 5px;
+  margin: 5px;
+}
+.links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.avatar {
+  border-radius: 50px;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  background-color: efefef;
+  background-size: cover;
+}
+
+.links .btn {
+  padding: 5px 10px 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #2b133b2b;
 }

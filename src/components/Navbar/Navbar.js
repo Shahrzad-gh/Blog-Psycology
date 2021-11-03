@@ -1,42 +1,23 @@
-import React, { useState } from "react";
-import { Menu } from "antd";
-import { AppstoreOutlined, HomeOutlined } from "@ant-design/icons";
-
-import "antd/dist/antd.css";
+import React from "react";
 import "./Navbar.css";
-const { SubMenu } = Menu;
+import SignInLinks from "./SignInLinks";
+import SignOutLinks from "./SignOutLinks";
 
-function Navbar() {
-  const [activeMenu, setActiveMenu] = useState({ current: "mail" });
-
-  const handleClick = (e) => {
-    setActiveMenu({ current: e.target.key });
-  };
+export default function Navbar() {
   return (
-    <Menu onClick={handleClick} selectedKeys={[activeMenu]} mode="horizontal">
-      <Menu.Item key="mail" icon={<HomeOutlined />}>
-        خانه
-      </Menu.Item>
-      <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-        پادکست
-      </Menu.Item>
-      <SubMenu key="SubMenu" title="مقاله">
-        <Menu.ItemGroup title="Item 1">
-          <Menu.Item key="setting:1">Option 1</Menu.Item>
-          <Menu.Item key="setting:2">Option 2</Menu.Item>
-        </Menu.ItemGroup>
-        <Menu.ItemGroup title="Item 2">
-          <Menu.Item key="setting:3">Option 3</Menu.Item>
-          <Menu.Item key="setting:4">Option 4</Menu.Item>
-        </Menu.ItemGroup>
-      </SubMenu>
-      <Menu.Item key="alipay">
-        <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-          وبلاگ
-        </a>
-      </Menu.Item>
-    </Menu>
+    <div className="nav">
+      <div className="navbar">
+        <ul>
+          <li>خانه</li>
+          <li>مقاله</li>
+          <li>درباره ما</li>
+          <li>تماس با ما</li>
+        </ul>
+      </div>
+      <div className="links">
+        <SignInLinks />
+        <SignOutLinks />
+      </div>
+    </div>
   );
 }
-
-export default Navbar;
