@@ -1,3 +1,6 @@
+.home {
+  display: flex;
+}
 .header {
   margin-top: 60px;
 }
@@ -15,8 +18,8 @@
 }
 .titleSm {
   position: absolute;
-  top: 20%;
-  font-size: 100px;
+  top: 24%;
+  font-size: 80px;
 }
 .headerImg {
   width: 100%;
@@ -66,6 +69,7 @@
   margin-top: 15px;
   width: 250px;
   height: 250px;
+  object-fit: cover;
 }
 .sidebarItem > p {
   padding: 30px;
