@@ -1,0 +1,58 @@
+.article {
+  display: flex;
+}
+.singlePost {
+  flex: 9;
+}
+
+.singlePostWrapper {
+  padding: 20px 20px 0 20px;
+}
+
+.singlePostImg {
+  width: 100px;
+  height: 300px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.SinglePostTitle {
+  text-align: center;
+  margin: 15px;
+  font-size: 28px;
+  font-style: italic;
+}
+
+.singlePostEdit {
+  float: left;
+  font-size: 16px;
+}
+.singlePostIcon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.singlePostIcon:first-child {
+  cursor: pointer;
+  color: teal;
+}
+.singlePostIcon:last-child {
+  color: tomato;
+}
+
+.singlePostInfo {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #b39656;
+}
+
+.singlePosDescription {
+  color: #666;
+  line-height: 25px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.singlePosDescription::first-letter {
+  margin-right: 20px;
+}
