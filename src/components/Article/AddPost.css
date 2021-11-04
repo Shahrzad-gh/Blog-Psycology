@@ -1,0 +1,71 @@
+.addPost {
+  padding: 50px 0;
+}
+.addPost h1 {
+  margin: 0 50px 50px 0;
+}
+.addPost .postImg {
+  margin-right: 150px;
+  width: 70vw;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.addForm {
+  position: relative;
+}
+.addFormGroup {
+  padding: 20px 0 0 20px;
+  margin-right: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.addImg {
+  display: flex;
+}
+.writeIcon {
+  width: 25px;
+  height: 25px;
+  font-size: 20px;
+  border: 1px solid;
+  border-radius: 50%;
+  color: rgb(129, 125, 125);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.fr-box.fr-basic {
+  width: 70vw;
+}
+
+input[type="text"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 70vw;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+input[type="text"]:focus {
+  outline: none !important;
+}
+input[type="file"] {
+  display: none;
+}
+.submitButton {
+  position: absolute;
+  top: 5px;
+  left: 50px;
+  color: #fff;
+  background-color: teal;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
