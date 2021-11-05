@@ -9,7 +9,7 @@ function AddPost() {
   const config = {
     name: "textarea",
     //key:
-    placeholderText: "Edit Your Content Here!",
+    placeholderText: "متن مقاله را واردکنید",
     //pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'codeView', 'colors', 'draggable', 'embedly', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quickInsert', 'quote', 'save', 'table', 'url', 'video', 'wordPaste'],
     colorsHEXInput: false,
     autoFocus: true,
@@ -102,12 +102,12 @@ function AddPost() {
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
-      <img
+      {/* <img
         className="postImg"
         src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
         alt="عکس"
         title="مقاله"
-      />
+      /> */}
       <form className="addForm">
         <div className="addFormGroup">
           <input
@@ -116,11 +116,6 @@ function AddPost() {
             placeholder="عنوان"
             autoFocus={true}
           />
-          <label className="addImg" htmlFor="inputFile">
-            اضافه کردن تصویر&nbsp;
-            <i className="writeIcon fas fa-plus"></i>
-          </label>
-          <input type="file" accept="image/*" id="inputFile" />
         </div>
         <div className="addFormGroup">
           <FroalaEditorComponent tag="textarea" config={config} />
