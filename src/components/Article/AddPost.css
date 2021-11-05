@@ -1,5 +1,6 @@
 .addPost {
   padding: 50px 0;
+  direction: rtl;
 }
 .addPost h1 {
   margin: 0 50px 50px 0;
@@ -38,6 +39,11 @@
 .fr-box.fr-basic {
   width: 70vw;
 }
+.fr-view {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #444444;
+}
 
 input[type="text"] {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -57,7 +63,7 @@ input[type="file"] {
 }
 .submitButton {
   position: absolute;
-  top: 5px;
+  top: 15px;
   left: 50px;
   color: #fff;
   background-color: teal;
