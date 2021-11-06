@@ -1,12 +1,14 @@
 .article {
   display: flex;
+  direction: rtl;
 }
 .singlePost {
   flex: 9;
 }
 
 .singlePostWrapper {
-  padding: 20px 20px 0 20px;
+  padding: 20px;
+  text-align: center;
 }
 
 .singlePostImg {
@@ -55,4 +57,36 @@
 
 .singlePosDescription::first-letter {
   margin-right: 20px;
+}
+.postTags {
+  display: flex;
+  flex-direction: row;
+}
+.postTagItem {
+  padding: 5px 10px;
+  background-color: rgb(230, 228, 228);
+  border-radius: 5px;
+  margin-left: 5px;
+  color: #666;
+}
+
+.aboutAuthor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(211, 209, 209);
+}
+.aboutAuthor p {
+  text-align: justify;
+  font-size: 12px;
+  margin-right: 10px;
+}
+.authorImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
 }

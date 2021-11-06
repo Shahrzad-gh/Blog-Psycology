@@ -13,6 +13,9 @@
   justify-content: flex-start;
   align-items: center;
 }
+a {
+  text-decoration: none;
+}
 ul {
   display: inline-flex;
   list-style: none;
@@ -43,4 +46,14 @@ li {
   padding: 5px 10px 10px 10px;
   border-radius: 5px;
   border: 1px solid #2b133b2b;
+}
+
+.btnAdd {
+  padding: 5px 10px 10px 10px;
+  border-radius: 5px;
+  background-color: teal;
+  color: #fff;
+}
+.btnAdd a:visited {
+  color: #fff;
 }

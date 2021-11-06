@@ -16,9 +16,7 @@ function Post() {
           <span className="postCategory">ذهن</span>&nbsp;
         </div>
         <span className="postTitle">نامفهوم از صنعت چاپ و با استفاده</span>
-        &nbsp;
-        <hr />
-        <span className="postDate">یک ساعت پیش</span>&nbsp;
+        <span className="postDate">یک ساعت پیش</span>
       </div>
       <p className="postDescription">
         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده

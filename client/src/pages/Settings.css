@@ -1,0 +1,74 @@
+.settings {
+  display: flex;
+  direction: rtl;
+}
+.settingsForm {
+  display: flex;
+  flex-direction: column;
+}
+.settingsWrapper {
+  flex: 9;
+  padding: 50px;
+}
+.settingsTitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.updateAccount {
+  color: teal;
+  font-weight: 500;
+}
+.deleteAccount {
+  color: tomato;
+  font-weight: 500;
+}
+.profilePicture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.inputImg {
+  display: none;
+}
+.settingsProfilePicture {
+  position: relative;
+}
+.settingPPIcon {
+  position: absolute;
+  top: 50px;
+  right: 170px;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: #777;
+}
+label {
+  margin-bottom: 5px;
+}
+input[type="email"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 30vw;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.settingdSubmit {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 30vw;
+  padding: 10px;
+  margin: 10px 5px 0 0;
+  background-color: teal;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}

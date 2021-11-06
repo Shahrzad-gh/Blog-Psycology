@@ -1,5 +1,6 @@
 .home {
   display: flex;
+  direction: rtl;
 }
 .header {
   margin-top: 60px;

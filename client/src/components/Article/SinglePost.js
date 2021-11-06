@@ -55,6 +55,25 @@ function SinglePost() {
           لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
           بهبود
         </p>
+        <div className="postTags">
+          <p className="postTagItem">جسم</p>
+          <p className="postTagItem">روانشناسی</p>
+          <p className="postTagItem">آرامش</p>
+        </div>
+        <div className="aboutAuthor">
+          <img
+            className="authorImg"
+            src="https://image.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg"
+            alt="نویسنده"
+            title="نویسنده"
+          />
+          <p>
+            تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود لورم ایپسوم متن
+            ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان که
+            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با
+            هدف بهبود
+          </p>
+        </div>
       </div>
     </div>
   );

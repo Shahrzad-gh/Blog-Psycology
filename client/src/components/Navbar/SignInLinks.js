@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function SignInLinks() {
   return (
@@ -11,6 +12,10 @@ function SignInLinks() {
           title="name family"
         />
       </li>
+      <li className="btnAdd">
+        <Link to="add">مقاله جدید</Link>
+      </li>
+
       <li className="btn">خروج</li>
     </ul>
   );
