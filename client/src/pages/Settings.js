@@ -7,7 +7,7 @@ function Settings() {
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="updateAccount">به روز رسانی حساب کاربری</span>
-          <span className="deleteAccount">پاک کردن حساب کاربری</span>
+          {/* <span className="deleteAccount">پاک کردن حساب کاربری</span> */}
         </div>
         <form className="settingsForm">
           <div className="settingsProfilePicture">
