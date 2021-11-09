@@ -15,7 +15,7 @@ function Post() {
           <span className="postCategory">جسم</span>&nbsp;
           <span className="postCategory">ذهن</span>&nbsp;
         </div>
-        <span className="postTitle">نامفهوم از صنعت چاپ و با استفاده</span>
+        <span className="postTitle">عنوان</span>
         <span className="postDate">یک ساعت پیش</span>
       </div>
       <p className="postDescription">

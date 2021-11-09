@@ -4,9 +4,9 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarItem">
-        <div className="sidebarTitle">درباره من</div>
+        <div className="sidebarTitle">درباره ما</div>
         <img
-          src="https://image.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg"
+          src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
           alt="پروفایل"
         />
         <p>
