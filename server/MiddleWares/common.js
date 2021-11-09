@@ -24,9 +24,7 @@ const User = require("../Models/User");
 
 // check current user
 const checkUser = (req, res, next) => {
-  console.log("checkUser");
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODdlNmU1MTA2ZWRiNTQyMzJmNTAyOCIsImlhdCI6MTYzNjM2MDgwNiwiZXhwIjoxNjM2NjIwMDA2fQ.zZtzgsLkgB-AcjOr-JYFQRSksxrBoJv_XGTRYAQfGco";
+  const token = req.cookies.token;
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
       if (err) {
@@ -34,7 +32,6 @@ const checkUser = (req, res, next) => {
         next();
       } else {
         let user = await User.findById(decodedToken.id);
-        console.log(user);
         res.locals.user = user;
         next();
       }
