@@ -1,15 +1,29 @@
 const Post = require("../Models/Post");
+const cloudinary = require("../utils/cloudinary");
 
 module.exports.addPost_post = async (req, res) => {
-  const newPost = new Post(req.body);
+  // let photo = { img: "", id: "" };
+
+  // cloudinary.config({
+  //   cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+  //   api_key: process.env.CLOUDINARY_APIKEY,
+  //   api_secret: process.env.CLOUDINARY_APISECRET,
+  // });
+
+  //const newPost = new Post(req.body);
 
   try {
-    const savedPost = await newPost.save();
-    res.status(200).json(savedPost);
+    // const result = await cloudinary.uploader.upload(req.file.path);
+    // photo.img = result.secure_url;
+    // photo.id = result.public_id;
+
+    const newPost = await Post.create(req.body, photo);
+    res.status(200).json(newPost);
   } catch (err) {
     res.status(500).json(err);
   }
 };
+
 module.exports.removePost_delete = async (req, res) => {
   const postId = req.params.id;
   try {
