@@ -6,9 +6,17 @@ const authRoutes = require("./Routes/Auth");
 const postRoutes = require("./Routes/Posts");
 const userRoutes = require("./Routes/Users");
 const categoryRoutes = require("./Routes/Categories");
+const cors = require("cors");
 
 dotenv.config();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    preflightContinue: false,
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT;
 app.use("/api/auth", authRoutes);
