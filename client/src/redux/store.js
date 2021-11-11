@@ -5,7 +5,7 @@ import { postsApi } from "./postsApi";
 
 export const store = configureStore({
   reducer: {
-    posts: postsReducer,
+    //posts: postsReducer,
     [postsApi.reducerPath]: postsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
