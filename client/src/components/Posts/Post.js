@@ -1,6 +1,6 @@
 import React from "react";
 import "./Post.css";
-
+import { Link } from "react-router-dom";
 function Post({ post }) {
   return (
     <div className="post">
@@ -15,7 +15,9 @@ function Post({ post }) {
           <span className="postCategory">جسم</span>&nbsp;
           <span className="postCategory">ذهن</span>&nbsp;
         </div>
-        <span className="postTitle">{post.title}</span>
+        <Link to={{ pathname: `post/${post._id}`, state: { id: post._id } }}>
+          <span className="postTitle">{post.title}</span>
+        </Link>
         <span className="postDate">یک ساعت پیش</span>
       </div>
       <p className="postDescription">{post.desc}</p>

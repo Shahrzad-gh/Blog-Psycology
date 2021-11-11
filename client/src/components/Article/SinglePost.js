@@ -1,80 +1,60 @@
 import React from "react";
+import { useGetPostQuery } from "../../redux/postsApi";
+import { useLocation } from "react-router-dom";
 
 function SinglePost() {
+  const location = useLocation();
+  const { id } = location.state;
+  const {
+    data,
+    // error, isLoading
+  } = useGetPostQuery(id);
+  console.log("single", data);
+
   return (
     <div className="singlePost">
-      <div className="singlePostWrapper">
-        <img
-          src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-          alt="عکس مقاله"
-          title="عنوان مقاله"
-        />
-        <h1 className="SinglePostTitle">
-          از صنعت چاپ و با استفاده
-          <div className="singlePostEdit">
-            <i className="singlePostIcon far fa-edit"></i>
-            <i className="singlePostIcon far fa-trash-alt"></i>
-          </div>
-        </h1>
-        <div className="singlePostInfo">
-          <span className="singlePostAuthor">
-            نویسنده: <b>شهرزاد</b>
-          </span>
-          <span className="singlePostDate"> یک ساعت پیش</span>
-        </div>
-        <p className="singlePosDescription">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-          از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-          سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-          متنوع با هدف بهبود لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-          صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-          روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-          تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود لورم ایپسوم متن
-          ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-          گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-          لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-          بهبود لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-          استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
-          ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-          کاربردهای متنوع با هدف بهبود لورم ایپسوم متن ساختگی با تولید سادگی
-          نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
-          بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-          تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود لورم ایپسوم متن
-          ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-          گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-          لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-          بهبود لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-          استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
-          ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-          کاربردهای متنوع با هدف بهبود لورم ایپسوم متن ساختگی با تولید سادگی
-          نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
-          بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-          تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود لورم ایپسوم متن
-          ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-          گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-          لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-          بهبود
-        </p>
-        <div className="postTags">
-          <p className="postTagItem">جسم</p>
-          <p className="postTagItem">روانشناسی</p>
-          <p className="postTagItem">آرامش</p>
-        </div>
-        <div className="aboutAuthor">
+      {data && (
+        <div className="singlePostWrapper">
           <img
-            className="authorImg"
-            src="https://image.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg"
-            alt="نویسنده"
-            title="نویسنده"
+            src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
+            alt="عکس مقاله"
+            title="عنوان مقاله"
           />
-          <p>
-            تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود لورم ایپسوم متن
-            ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان که
-            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با
-            هدف بهبود
-          </p>
+          <h1 className="SinglePostTitle">
+            {data.title}
+            <div className="singlePostEdit">
+              <i className="singlePostIcon far fa-edit"></i>
+              <i className="singlePostIcon far fa-trash-alt"></i>
+            </div>
+          </h1>
+          <div className="singlePostInfo">
+            <span className="singlePostAuthor">
+              نویسنده: <b>{data.author}</b>
+            </span>
+            <span className="singlePostDate">{data.createdAt}</span>
+          </div>
+          <p className="singlePosDescription">{data.desc}</p>
+          <div className="postTags">
+            <p className="postTagItem">جسم</p>
+            <p className="postTagItem">روانشناسی</p>
+            <p className="postTagItem">آرامش</p>
+          </div>
+          <div className="aboutAuthor">
+            <img
+              className="authorImg"
+              src="https://image.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg"
+              alt="نویسنده"
+              title="نویسنده"
+            />
+            <p>
+              تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود لورم ایپسوم متن
+              ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+              که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع
+              با هدف بهبود
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
