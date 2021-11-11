@@ -1,113 +1,74 @@
-import React from "react";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
-import "froala-editor/js/plugins.pkgd.min.js";
-import FroalaEditorComponent from "react-froala-wysiwyg";
+import React, { useState } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import "./AddPost.css";
 
 function AddPost() {
-  const config = {
-    name: "textarea",
-    //key:
-    placeholderText: "متن مقاله را واردکنید",
-    //pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'codeView', 'colors', 'draggable', 'embedly', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quickInsert', 'quote', 'save', 'table', 'url', 'video', 'wordPaste'],
-    colorsHEXInput: false,
-    autoFocus: true,
-    toolbartop: true,
-    linkAlwaysBlank: true,
-    fontFamilySelection: true,
-    fontSizeSelection: true,
-    paragraphFormatSelection: true,
-    htmlExecuteScripts: true,
-    iframe: true,
-    tabSpaces: 4,
-    toolbarButtons: {
-      moreText: {
-        buttons: [
-          "bold",
-          "italic",
-          "underline",
-          "strikeThrough",
-          "subscript",
-          "superscript",
-          "fontFamily",
-          "fontSize",
-          "textColor",
-          "backgroundColor",
-          "inlineClass",
-          "inlineStyle",
-          "clearFormatting",
-        ],
+  // let history = useHistory();
+  // const [userInfo, setuserInfo] = useState({
+  //   title: "",
+  // });
+  // const onChangeValue = (e) => {
+  //   setuserInfo({
+  //     ...userInfo,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
-        // Alignment of the group in the toolbar.
-        align: "right",
+  // let editorState = EditorState.createEmpty();
+  // const [description, setDescription] = useState(editorState);
+  // const onEditorStateChange = (editorState) => {
+  //   setDescription(editorState);
+  // };
 
-        // By default, 3 buttons are shown in the main toolbar. The rest of them are available when using the more button.
-        buttonsVisible: 3,
-      },
-      moreParagraph: {
-        buttons: [
-          "alignLeft",
-          "alignCenter",
-          "alignRight",
-          "alignJustify",
-          "formatOL",
-          "formatUL",
-          "paragraphFormat",
-          "paragraphStyle",
-          "lineHeight",
-          "outdent",
-          "indent",
-          "quote",
-        ],
-        align: "left",
-        buttonsVisible: 2,
-      },
-
-      moreRich: {
-        buttons: [
-          "insertLink",
-          "insertImage",
-          "insertVideo",
-          "insertTable",
-          "emoticons",
-          "fontAwesome",
-          "specialCharacters",
-          "embedly",
-          "insertFile",
-          "insertHR",
-        ],
-        align: "left",
-        buttonsVisible: 3,
-      },
-
-      moreMisc: {
-        buttons: [
-          "undo",
-          "redo",
-          "fullscreen",
-          "print",
-          "getPDF",
-          "spellChecker",
-          "selectAll",
-          "html",
-          "help",
-        ],
-        align: "right",
-        buttonsVisible: 2,
-      },
-    },
-  };
-
+  // const [isError, setError] = useState(null);
+  // const addDetails = async (event) => {
+  //   try {
+  //     event.preventDefault();
+  //     event.persist();
+  //     if (userInfo.description.value.length < 50) {
+  //       setError("Required, Add description minimum length 50 characters");
+  //       return;
+  //     }
+  //     axios
+  //       .post(`http://localhost:8080/addArticle`, {
+  //         title: userInfo.title,
+  //         description: userInfo.description.value,
+  //       })
+  //       .then((res) => {
+  //         if (res.data.success === true) {
+  //           history.push("/");
+  //         }
+  //       });
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
-      {/* <img
-        className="postImg"
-        src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-        alt="عکس"
-        title="مقاله"
-      /> */}
+      <div className="postImage">
+        <input
+          type="file"
+          id="postImage"
+          accept="image/*"
+          style={{ display: "none" }}
+        />
+        <label htmlFor="postImage">
+          <i className="far fa-plus-square"></i>
+          &nbsp; اضافه کردن عکس عنوان
+        </label>
+        {/* <img
+          className="postImg"
+          src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
+          alt="عکس"
+          title="مقاله"
+        /> */}
+      </div>
       <form className="addForm">
         <div className="addFormGroup">
           <input
@@ -118,7 +79,11 @@ function AddPost() {
           />
         </div>
         <div className="addFormGroup">
-          <FroalaEditorComponent tag="textarea" config={config} />
+          <Editor
+            toolbarClassName="toolbarClassName"
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+          />
         </div>
         <button className="submitButton">انتشار</button>
       </form>
