@@ -15,10 +15,23 @@ export const postsApi = createApi({
       query: (id) => `get/${id}`,
     }),
     addPost: builder.mutation({
-      query: (user) => ({
+      query: (post) => ({
         url: `add`,
         method: "POST",
-        body: user,
+        body: post,
+      }),
+    }),
+    editPost: builder.mutation({
+      query: ({ id, ...rest }) => ({
+        url: `edit/${id}`,
+        method: "PUT",
+        body: rest,
+      }),
+    }),
+    deletePost: builder.mutation({
+      query: (post) => ({
+        url: `remove/${post.id}`,
+        method: "Delete",
       }),
     }),
   }),
@@ -26,5 +39,10 @@ export const postsApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllPostsQuery, useGetPostQuery, useAddPostMutation } =
-  postsApi;
+export const {
+  useGetAllPostsQuery,
+  useGetPostQuery,
+  useAddPostMutation,
+  useEditPostMutation,
+  useDeletePostMutation,
+} = postsApi;
