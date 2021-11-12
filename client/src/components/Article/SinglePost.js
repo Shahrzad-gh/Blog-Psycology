@@ -3,13 +3,15 @@ import { useGetPostQuery } from "../../redux/postsApi";
 import { useLocation } from "react-router-dom";
 
 function SinglePost() {
-  const location = useLocation();
-  const { id } = location.state;
+  //const location = useLocation();
+  // const { id } = location.state;
+  const id = "618a365279e1eae6359c7d16";
   const {
     data,
     // error, isLoading
   } = useGetPostQuery(id);
   console.log("single", data);
+  console.log("single", id);
 
   return (
     <div className="singlePost">
@@ -33,7 +35,10 @@ function SinglePost() {
             </span>
             <span className="singlePostDate">{data.createdAt}</span>
           </div>
-          <p className="singlePosDescription">{data.desc}</p>
+          <p
+            className="singlePosDescription"
+            dangerouslySetInnerHTML={{ __html: data.desc }}
+          />
           <div className="postTags">
             <p className="postTagItem">جسم</p>
             <p className="postTagItem">روانشناسی</p>

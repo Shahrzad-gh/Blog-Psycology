@@ -20,7 +20,11 @@ function Post({ post }) {
         </Link>
         <span className="postDate">یک ساعت پیش</span>
       </div>
-      <p className="postDescription">{post.desc}</p>
+      {/* <p className="postDescription">{post.desc}</p> */}
+      <div
+        className="postDescription"
+        dangerouslySetInnerHTML={{ __html: post.desc }}
+      />
     </div>
   );
 }
