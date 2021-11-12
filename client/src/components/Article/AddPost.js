@@ -3,51 +3,56 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./AddPost.css";
 
 function AddPost() {
-  // let history = useHistory();
-  // const [userInfo, setuserInfo] = useState({
-  //   title: "",
-  // });
-  // const onChangeValue = (e) => {
-  //   setuserInfo({
-  //     ...userInfo,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  const user = "shery";
 
-  // let editorState = EditorState.createEmpty();
-  // const [description, setDescription] = useState(editorState);
-  // const onEditorStateChange = (editorState) => {
-  //   setDescription(editorState);
-  // };
+  const [userInfo, setuserInfo] = useState({
+    title: "",
+    author: user,
+  });
 
-  // const [isError, setError] = useState(null);
-  // const addDetails = async (event) => {
-  //   try {
-  //     event.preventDefault();
-  //     event.persist();
-  //     if (userInfo.description.value.length < 50) {
-  //       setError("Required, Add description minimum length 50 characters");
-  //       return;
-  //     }
-  //     axios
-  //       .post(`http://localhost:8080/addArticle`, {
-  //         title: userInfo.title,
-  //         description: userInfo.description.value,
-  //       })
-  //       .then((res) => {
-  //         if (res.data.success === true) {
-  //           history.push("/");
-  //         }
-  //       });
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // };
+  const handleOnChange = (e) => {
+    setuserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  console.log(userInfo);
+
+  let editorState = EditorState.createEmpty();
+  const [description, setDescription] = useState(editorState);
+  const onEditorStateChange = (editorState) => {
+    setDescription(editorState);
+  };
+
+  console.log(description);
+
+  const [isError, setError] = useState(null);
+
+  const addDetails = async (event) => {
+    console.log("addDetail");
+    console.log(userInfo);
+
+    try {
+      event.preventDefault();
+      event.persist();
+      if (userInfo.description.value.length < 50) {
+        setError("Required, Add description minimum length 50 characters");
+        return;
+      }
+      await axios.post(`http://localhost:8080/api/post/add`, {
+        title: userInfo.title,
+        desc: userInfo.description.value,
+        author: userInfo.author,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
@@ -69,20 +74,30 @@ function AddPost() {
           title="مقاله"
         /> */}
       </div>
-      <form className="addForm">
+      <form className="addForm" onSubmit={addDetails}>
         <div className="addFormGroup">
           <input
+            name="title"
             type="text"
             id="postTitle"
             placeholder="عنوان"
             autoFocus={true}
+            onChange={handleOnChange}
           />
         </div>
         <div className="addFormGroup">
           <Editor
+            editorState={description}
             toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
+            onEditorStateChange={onEditorStateChange}
+          />
+          <textarea
+            style={{ display: "none" }}
+            disabled
+            ref={(val) => (userInfo.description = val)}
+            value={draftToHtml(convertToRaw(description.getCurrentContent()))}
           />
         </div>
         <button className="submitButton">انتشار</button>
