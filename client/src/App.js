@@ -16,7 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/post/:postId" component={Article} />
-          <Route path="/add">{user ? <AddPost /> : <SignIn />}</Route>
+          <Route path="/create">{user ? <AddPost /> : <SignIn />}</Route>
           <Route path="/signin" component={SignIn} />
           <Route path="/settings">{user ? <Settings /> : <SignIn />}</Route>
         </Switch>
