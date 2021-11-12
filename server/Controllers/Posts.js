@@ -16,8 +16,7 @@ module.exports.addPost_post = async (req, res) => {
     // const result = await cloudinary.uploader.upload(req.file.path);
     // photo.img = result.secure_url;
     // photo.id = result.public_id;
-
-    const newPost = await Post.create(req.body, photo);
+    const newPost = await Post.create(req.body);
     res.status(200).json(newPost);
   } catch (err) {
     res.status(500).json(err);
