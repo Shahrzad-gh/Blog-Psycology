@@ -1,6 +1,12 @@
 import React from "react";
 
 function Sidebar() {
+  const handleLoadPosts = () => {
+    const {
+      data,
+      // error, isLoading
+    } = useGetCatQuery();
+  };
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -19,9 +25,15 @@ function Sidebar() {
       <div className="sidebarItem">
         <div className="sidebarTitle">موضوعات</div>
         <ul className="sidebarList">
-          <li className="sidebarListItem">جسم</li>
-          <li className="sidebarListItem">ذهن</li>
-          <li className="sidebarListItem">خویشتن</li>
+          <li className="sidebarListItem" onClick={handleLoadPosts}>
+            جسم
+          </li>
+          <li className="sidebarListItem" onClick={handleLoadPosts}>
+            ذهن
+          </li>
+          <li className="sidebarListItem" onClick={handleLoadPosts}>
+            خویشتن
+          </li>
         </ul>
       </div>
       <div className="sidebarItem">
