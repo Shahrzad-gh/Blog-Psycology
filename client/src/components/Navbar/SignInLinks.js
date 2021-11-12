@@ -13,7 +13,7 @@ function SignInLinks() {
         />
       </li>
       <li className="btnAdd">
-        <Link to="add">مقاله جدید</Link>
+        <Link to="/create">مقاله جدید</Link>
       </li>
 
       <li className="btn">خروج</li>
