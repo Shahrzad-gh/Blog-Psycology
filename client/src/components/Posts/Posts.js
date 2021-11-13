@@ -3,7 +3,7 @@ import Post from "./Post";
 import { useSelector } from "react-redux";
 import { useGetAllPostsQuery } from "../../redux/postsApi";
 
-function Posts() {
+function Posts({ search }) {
   // const {
   // items: posts,
   //   status,
@@ -12,7 +12,7 @@ function Posts() {
   const {
     data,
     // error, isLoading
-  } = useGetAllPostsQuery();
+  } = useGetAllPostsQuery(search);
 
   return (
     <div className="posts">
