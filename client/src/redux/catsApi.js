@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const catsApi = createApi({
   reducerPath: "catsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080/api/category",
+    baseUrl: "http://localhost:8080/api/cat",
   }),
   endpoints: (builder) => ({
     getAllCats: builder.query({
