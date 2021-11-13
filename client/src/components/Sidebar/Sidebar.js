@@ -1,12 +1,11 @@
 import React from "react";
-
+import { useGetAllCatsQuery } from "../../redux/catsApi";
 function Sidebar() {
-  const handleLoadPosts = () => {
-    const {
-      data,
-      // error, isLoading
-    } = useGetCatQuery();
-  };
+  const {
+    data,
+    // error, isLoading
+  } = useGetAllCatsQuery();
+
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -25,15 +24,12 @@ function Sidebar() {
       <div className="sidebarItem">
         <div className="sidebarTitle">موضوعات</div>
         <ul className="sidebarList">
-          <li className="sidebarListItem" onClick={handleLoadPosts}>
-            جسم
-          </li>
-          <li className="sidebarListItem" onClick={handleLoadPosts}>
-            ذهن
-          </li>
-          <li className="sidebarListItem" onClick={handleLoadPosts}>
-            خویشتن
-          </li>
+          {data &&
+            data.map((c) => (
+              <li className="sidebarListItem" key={c._id}>
+                {c.name}
+              </li>
+            ))}
         </ul>
       </div>
       <div className="sidebarItem">
