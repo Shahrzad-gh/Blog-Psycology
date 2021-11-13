@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetAllCatsQuery } from "../../redux/catsApi";
+import { Link } from "react-router-dom";
 function Sidebar() {
   const {
     data,
@@ -26,9 +27,13 @@ function Sidebar() {
         <ul className="sidebarList">
           {data &&
             data.map((c) => (
-              <li className="sidebarListItem" key={c._id}>
-                {c.name}
-              </li>
+              <Link
+                key={c._id}
+                to={{ pathname: `/`, search: "hi" }}
+                className="link"
+              >
+                <li className="sidebarListItem">{c.name}</li>
+              </Link>
             ))}
         </ul>
       </div>
