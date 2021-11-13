@@ -3,16 +3,12 @@ import { useGetPostByIdQuery } from "../../redux/postsApi";
 import { useLocation } from "react-router-dom";
 
 function SinglePost() {
-  //const location = useLocation();
-  // const { id } = location.state;
-  const id = "618a365279e1eae6359c7d16";
+  const location = useLocation();
+  const { id } = location.state;
   const {
     data,
     // error, isLoading
   } = useGetPostByIdQuery(id);
-
-  console.log("single", data);
-  console.log("single", id);
 
   return (
     <div className="singlePost">
