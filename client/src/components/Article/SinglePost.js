@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetPostQuery } from "../../redux/postsApi";
+import { useGetPostByIdQuery } from "../../redux/postsApi";
 import { useLocation } from "react-router-dom";
 
 function SinglePost() {
@@ -9,7 +9,8 @@ function SinglePost() {
   const {
     data,
     // error, isLoading
-  } = useGetPostQuery(id);
+  } = useGetPostByIdQuery(id);
+
   console.log("single", data);
   console.log("single", id);
 
