@@ -11,8 +11,14 @@ export const postsApi = createApi({
     getAllPosts: builder.query({
       query: () => `getall`,
     }),
-    getPost: builder.query({
+    getPostById: builder.query({
       query: (id) => `get/${id}`,
+    }),
+    getPostsByCat: builder.query({
+      query: (cat) => `getall?cat=${cat}`,
+    }),
+    getPostsByUsername: builder.query({
+      query: (username) => `getall?user=${username}`,
     }),
     addPost: builder.mutation({
       query: (post) => ({
@@ -41,7 +47,9 @@ export const postsApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetAllPostsQuery,
-  useGetPostQuery,
+  useGetPostByIdQuery,
+  useGetPostsByCatQuery,
+  useGetPostsByUsernameQuery,
   useAddPostMutation,
   useEditPostMutation,
   useDeletePostMutation,
