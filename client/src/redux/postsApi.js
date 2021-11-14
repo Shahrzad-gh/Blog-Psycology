@@ -9,7 +9,7 @@ export const postsApi = createApi({
   }),
   endpoints: (builder) => ({
     getAllPosts: builder.query({
-      query: (search) => `getall/${search}`,
+      query: (search) => ({ url: `getall/${search}` }),
     }),
     getPostById: builder.query({
       query: (id) => `get/${id}`,
@@ -35,8 +35,8 @@ export const postsApi = createApi({
       }),
     }),
     deletePost: builder.mutation({
-      query: (post) => ({
-        url: `remove/${post.id}`,
+      query: (id) => ({
+        url: `remove/${id}`,
         method: "Delete",
       }),
     }),
