@@ -3,7 +3,6 @@ const cloudinary = require("../utils/cloudinary");
 
 module.exports.addPost_post = async (req, res) => {
   // let photo = { img: "", id: "" };
-
   // cloudinary.config({
   //   cloud_name: process.env.CLOUDINARY_CLOUDNAME,
   //   api_key: process.env.CLOUDINARY_APIKEY,
@@ -25,9 +24,10 @@ module.exports.addPost_post = async (req, res) => {
 
 module.exports.removePost_delete = async (req, res) => {
   const postId = req.params.id;
+
   try {
     const post = await Post.findById(postId);
-    if (post.author === res.locals.user.username) {
+    if (post.author.toLowerCase() === res.locals.user.username.toLowerCase()) {
       try {
         await post.delete();
         res.status(201).json("post has been deleted!");
