@@ -10,7 +10,9 @@
   padding: 20px;
   text-align: center;
 }
-
+.notFound {
+  text-align: center;
+}
 .singlePostImg {
   width: 100px;
   height: 300px;
