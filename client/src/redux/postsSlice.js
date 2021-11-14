@@ -9,7 +9,6 @@ const initialState = {
 export const postsFetch = createAsyncThunk("posts/postsFetch", async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/post/getall");
-    console.log("potsFetch", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
