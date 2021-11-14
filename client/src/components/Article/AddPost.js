@@ -3,11 +3,11 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import axios from "axios";
 import "./AddPost.css";
+import { useAddPostMutation } from "../../redux/postsApi";
 
 function AddPost() {
-  const user = "shery";
+  const user = "Shery";
 
   const [userInfo, setuserInfo] = useState({
     title: "",
@@ -25,34 +25,34 @@ function AddPost() {
 
   let editorState = EditorState.createEmpty();
   const [description, setDescription] = useState(editorState);
+  const [categories, setCategories] = useState([]);
+
   const onEditorStateChange = (editorState) => {
     setDescription(editorState);
   };
+  const [
+    trigger,
+    //result
+  ] = useAddPostMutation();
 
-  console.log(description);
-
-  const [isError, setError] = useState(null);
-
-  const addDetails = async (event) => {
-    console.log("addDetail");
-    console.log(userInfo);
-
-    try {
-      event.preventDefault();
-      event.persist();
-      if (userInfo.description.value.length < 50) {
-        setError("Required, Add description minimum length 50 characters");
-        return;
-      }
-      await axios.post(`http://localhost:8080/api/post/add`, {
-        title: userInfo.title,
-        desc: userInfo.description.value,
-        author: userInfo.author,
-      });
-    } catch (error) {
-      throw error;
-    }
+  const handleAddCat = (e) => {
+    setCategories([...categories, e.target.value]);
   };
+  console.log(categories);
+  const [
+    //isError,
+    setError,
+  ] = useState(null);
+
+  const addDetails = async () => {
+    trigger({
+      title: userInfo.title,
+      desc: userInfo.description.value,
+      author: userInfo.author,
+      categories: categories,
+    });
+  };
+
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
@@ -85,6 +85,32 @@ function AddPost() {
             onChange={handleOnChange}
           />
         </div>
+        <label className="selectCat">انتخاب موضوع:</label>
+        <input
+          type="checkbox"
+          id="body"
+          name="body"
+          value="جسم"
+          onChange={handleAddCat}
+        />
+        <label htmlFor="body">جسم</label>
+        <input
+          type="checkbox"
+          id="mind"
+          name="mind"
+          value="ذهن"
+          onChange={handleAddCat}
+        />
+        <label htmlFor="mind">ذهن</label>
+        <input
+          type="checkbox"
+          id="self"
+          name="self"
+          value="خویشتن"
+          onChange={handleAddCat}
+        />
+        <label htmlFor="self">خویشتن</label>
+
         <div className="addFormGroup">
           <Editor
             editorState={description}
