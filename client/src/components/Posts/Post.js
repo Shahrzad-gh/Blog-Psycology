@@ -12,8 +12,12 @@ function Post({ post }) {
       />
       <div className="postInfo">
         <div className="postCategories">
-          <span className="postCategory">جسم</span>&nbsp;
-          <span className="postCategory">ذهن</span>&nbsp;
+          {post &&
+            post.categories.map((c, index) => (
+              <span className="postCategory" key={index}>
+                {c}&nbsp;
+              </span>
+            ))}
         </div>
         <Link to={{ pathname: `post/${post._id}`, state: { id: post._id } }}>
           <span className="postTitle">{post.title}</span>
