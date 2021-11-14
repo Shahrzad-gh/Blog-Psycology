@@ -29,7 +29,7 @@ function Sidebar() {
             data.map((c) => (
               <Link
                 key={c._id}
-                to={{ pathname: `/`, search: "hi" }}
+                to={{ pathname: `/`, search: `cat=${c.name}` }}
                 className="link"
               >
                 <li className="sidebarListItem">{c.name}</li>
