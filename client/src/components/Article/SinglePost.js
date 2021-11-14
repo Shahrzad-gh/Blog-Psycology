@@ -1,7 +1,10 @@
 import React from "react";
-import { useGetPostByIdQuery } from "../../redux/postsApi";
+import {
+  useDeletePostMutation,
+  useGetPostByIdQuery,
+} from "../../redux/postsApi";
 import { useLocation } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function SinglePost() {
   const location = useLocation();
   const { id } = location.state;
@@ -10,6 +13,14 @@ function SinglePost() {
     // error, isLoading
   } = useGetPostByIdQuery(id);
 
+  const [
+    trriger,
+    // , result
+  ] = useDeletePostMutation();
+
+  const handleDeletePost = () => {
+    trriger(id);
+  };
   return (
     <div className="singlePost">
       {data && (
@@ -22,8 +33,16 @@ function SinglePost() {
           <h1 className="SinglePostTitle">
             {data.title}
             <div className="singlePostEdit">
-              <i className="singlePostIcon far fa-edit"></i>
-              <i className="singlePostIcon far fa-trash-alt"></i>
+              <Link
+                to={{ pathname: `/edit`, state: { id } }}
+                className="singlePostIcon"
+              >
+                <i className=" far fa-edit"></i>
+              </Link>
+              <i
+                className="singlePostIcon far fa-trash-alt"
+                onClick={handleDeletePost}
+              ></i>
             </div>
           </h1>
           <div className="singlePostInfo">
@@ -56,6 +75,8 @@ function SinglePost() {
             </p>
           </div>
         </div>
+        // ) : (
+        //   <p className="notFound">پست یافت نشد</p>
       )}
     </div>
   );
