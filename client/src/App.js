@@ -7,8 +7,9 @@ import AddPost from "./components/Article/AddPost";
 import SignIn from "./components/signIn/SignIn";
 import Settings from "./pages/Settings";
 import Edit from "./components/Posts/Edit";
+
 function App() {
-  const user = true;
+  const user = false;
   return (
     <div className="App">
       <Router>
