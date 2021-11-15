@@ -70,3 +70,36 @@ module.exports.register_post = async (req, res) => {
     res.status(400).json({ errors });
   }
 };
+
+module.exports.loggedIn_get = () => {
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    jwt.verify(token, process.env.JWT_SECRET);
+
+    res.send(true);
+  } catch (err) {
+    handleErrors(err);
+    res.json(false);
+  }
+};
+
+module.exports.getUser = (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.json(false);
+
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+      if (err) {
+        res.locals.user = null;
+      } else {
+        let user = await User.findById(decodedToken.id);
+        //res.locals.user = user.role;
+        (user.password = undefined), res.send(user);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
