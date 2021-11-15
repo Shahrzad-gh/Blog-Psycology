@@ -45,7 +45,7 @@ module.exports.editPost_put = async (req, res) => {
   const postId = req.params.id;
   try {
     const post = await Post.findById(postId);
-    if (post.author === res.locals.user.username) {
+    if (post.author.toLowerCase() === res.locals.user.username.toLowerCase()) {
       try {
         const newPost = await Post.findByIdAndUpdate(
           postId,
