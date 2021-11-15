@@ -7,15 +7,17 @@ import {
 } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useEditPostMutation } from "../../redux/postsApi";
 
 function Editpost(props) {
-  const user = "shery";
+  const history = useHistory();
+  const location = useLocation();
+  console.log(props);
 
   const [userInfo, setuserInfo] = useState({
-    title: "",
-    author: user,
+    title: props.editPost.title,
   });
 
   const handleOnChange = (e) => {
@@ -25,12 +27,8 @@ function Editpost(props) {
     });
   };
 
-  console.log(userInfo);
-
   let editorState = EditorState.createWithContent(
-    ContentState.createFromBlockArray(
-      convertFromHTML(props.postList[0].description)
-    )
+    ContentState.createFromBlockArray(convertFromHTML(props.editPost.desc))
   );
   const [description, setDescription] = useState(editorState);
   const [categories, setCategories] = useState([]);
@@ -38,28 +36,34 @@ function Editpost(props) {
   const onEditorStateChange = (editorState) => {
     setDescription(editorState);
   };
-  const [
-    trigger,
-    //result
-  ] = useAddPostMutation();
+  const [trigger, result] = useEditPostMutation();
 
-  const handleAddCat = (e) => {
+  const handleUpdateCat = (e) => {
     setCategories([...categories, e.target.value]);
   };
-  console.log(categories);
+
   const [
     //isError,
     setError,
   ] = useState(null);
 
-  const addDetails = async () => {
+  const updatePost = async () => {
     trigger({
+      id: props.editPost._id,
       title: userInfo.title,
       desc: userInfo.description.value,
       author: userInfo.author,
       categories: categories,
     });
+    // console.log(result);
+    // location.state = result;
+    history.push({
+      pathname: `post/${props.editPost._id}`,
+      state: { data: result.data },
+    });
   };
+  // console.log(result);
+
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
@@ -81,9 +85,10 @@ function Editpost(props) {
           title="مقاله"
         /> */}
       </div>
-      <form className="addForm" onSubmit={addDetails}>
+      <form className="addForm" onSubmit={updatePost}>
         <div className="addFormGroup">
           <input
+            value={userInfo.title}
             name="title"
             type="text"
             id="postTitle"
@@ -98,7 +103,7 @@ function Editpost(props) {
           id="body"
           name="body"
           value="جسم"
-          onChange={handleAddCat}
+          onChange={handleUpdateCat}
         />
         <label htmlFor="body">جسم</label>
         <input
@@ -106,7 +111,7 @@ function Editpost(props) {
           id="mind"
           name="mind"
           value="ذهن"
-          onChange={handleAddCat}
+          onChange={handleUpdateCat}
         />
         <label htmlFor="mind">ذهن</label>
         <input
@@ -114,7 +119,7 @@ function Editpost(props) {
           id="self"
           name="self"
           value="خویشتن"
-          onChange={handleAddCat}
+          onChange={handleUpdateCat}
         />
         <label htmlFor="self">خویشتن</label>
 
