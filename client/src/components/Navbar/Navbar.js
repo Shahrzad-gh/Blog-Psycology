@@ -5,7 +5,7 @@ import SignOutLinks from "./SignOutLinks";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const user = true;
+  const user = false;
   return (
     <div className="nav">
       <div className="navbar">
