@@ -3,18 +3,29 @@ import axios from "axios";
 import Editpost from "./EditPost";
 import { useEditPostMutation } from "../../redux/postsApi";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
-const Edit = () => {
+const Edit = (props) => {
+  console.log("props", props);
   const location = useLocation();
-  console.log(location);
-  const { id } = location.state;
+  const id = location.pathname.split("/")[2];
+  const { data } = location?.state || {};
+  console.log("p", location?.state);
+
   return (
     <div>
-      {id ? (
-        <>
-          <Editpost editPostID={id} />
-        </>
-      ) : null}
+      {
+        data && (
+          <>
+            <Editpost editPost={data} />
+          </>
+        )
+        //   : (
+        //   <Link to={{ pathname: `/post/${id}` }}>
+        //     <p> مشاهده پست</p>
+        //   </Link>
+        // )
+      }
     </div>
   );
 };
