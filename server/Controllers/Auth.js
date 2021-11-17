@@ -40,11 +40,13 @@ const createToken = (id) => {
 };
 
 module.exports.login_post = async (req, res) => {
+  console.log(req.body);
   try {
     const user = await User.login(req.body.email, req.body.password);
     const token = createToken(user._id);
     res.cookie("token", token, { httpOnly: false });
     let { password, ...rest } = user._doc;
+    console.log("login Success");
     res.status(200).json({ rest, token });
   } catch (error) {
     const errors = handleErrors(error);
