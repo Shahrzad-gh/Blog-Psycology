@@ -1,39 +1,73 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { register, login, logout } from "./auth";
-//import cookie from "react-cookie";
-import { useCookies } from "cookie-parser";
+import axios from "axios";
 
-const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-const user = cookies.get("token");
+export const loginUser = createAsyncThunk(
+  "users/login",
+  async (loginInfo, thunkAPI) => {
+    console.log("e", loginInfo);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/signin",
+        loginInfo
+      );
+      let data = await response.json();
+      console.log("response", data);
+    } catch (e) {
+      console.log("Error", e.response.data);
+      thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
 
-const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+export const authSlice = createSlice({
+  name: "user",
+  initialState: {
+    username: "",
+    email: "",
+    isFetching: false,
+    isSuccess: false,
+    isError: false,
+    errorMessage: "",
+  },
+  reducers: {
+    // Reducer comes here
+    [loginUser.fulfilled]: (state, { payload }) => {
+      state.email = payload.email;
+      state.username = payload.name;
+      state.isFetching = false;
+      state.isSuccess = true;
+      return state;
+    },
+    [loginUser.rejected]: (state, { payload }) => {
+      console.log("payload", payload);
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = payload.message;
+    },
+    [loginUser.pending]: (state) => {
+      state.isFetching = true;
+    },
+  },
 
-const authSlice = createSlice({
-  name: "auth",
-  initialState,
   extraReducers: {
-    [register.fulfilled]: (state, action) => {
-      state.isLoggedIn = false;
-    },
-    [register.rejected]: (state, action) => {
-      state.isLoggedIn = false;
-    },
-    [login.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
-    },
-    [login.rejected]: (state, action) => {
-      state.isLoggedIn = false;
-      state.user = null;
-    },
-    [logout.fulfilled]: (state, action) => {
-      state.isLoggedIn = false;
-      state.user = null;
-    },
+    // Extra reducer comes here
+    // [signupUser.fulfilled]: (state, { payload }) => {
+    //   state.isFetching = false;
+    //   state.isSuccess = true;
+    //   state.email = payload.user.email;
+    //   state.username = payload.user.name;
+    // },
+    // [signupUser.pending]: (state) => {
+    //   state.isFetching = true;
+    // },
+    // [signupUser.rejected]: (state, { payload }) => {
+    //   state.isFetching = false;
+    //   state.isError = true;
+    //   state.errorMessage = payload.message;
+    // },
   },
 });
 
-const { reducer } = authSlice;
-export default reducer;
+export const userSelector = (state) => state.user;
+
+// export default authSlice.reducer;
