@@ -39,12 +39,14 @@ function AddPost() {
     setCategories([...categories, e.target.value]);
   };
   console.log(categories);
-  const [
-    //isError,
-    setError,
-  ] = useState(null);
+  // const [
+  //   isError,
+  //   setError,
+  // ] = useState(null);
 
-  const addDetails = async () => {
+  const addDetails = async (e) => {
+    e.preventDefault();
+
     trigger({
       title: userInfo.title,
       desc: userInfo.description.value,

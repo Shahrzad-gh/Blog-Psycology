@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, userSelector } from "../../redux/authSlice";
+import { loginUser } from "../../redux/authSlice";
 import "./SignIn.css";
+import { Redirect } from "react-router-dom";
+import { userSelector } from "../../redux/authSlice";
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -13,6 +15,8 @@ function SignIn() {
   const { isFetching, isSuccess, isError, errorMessage } =
     useSelector(userSelector);
 
+  console.log("selector", useSelector(userSelector));
+
   const handleOnChange = (e) => {
     setLoginInfo({
       ...loginInfo,
@@ -22,32 +26,39 @@ function SignIn() {
   console.log(loginInfo);
 
   const handleSignin = (e) => {
-    console.log(loginInfo);
-    dispatch(loginUser(loginInfo));
+    e.preventDefault();
+    const isAuth = dispatch(loginUser(loginInfo));
+    console.log("status", isAuth.status);
   };
 
   return (
     <div className="signin">
-      <form className="signinForm" onSubmit={handleSignin}>
-        <h1>ورود</h1>
-        <input
-          type="email"
-          id="email"
-          placeholder="ایمیل"
-          name="email"
-          onChange={handleOnChange}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="رمز ورود"
-          name="password"
-          onChange={handleOnChange}
-        />
-        <button type="submit" className="signinButton">
-          ورود
-        </button>
-      </form>
+      {isSuccess ? (
+        <Redirect to="/" />
+      ) : (
+        <form className="signinForm" onSubmit={handleSignin}>
+          <h1>ورود</h1>
+          <input
+            type="email"
+            id="email"
+            placeholder="ایمیل"
+            name="email"
+            onChange={handleOnChange}
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="رمز ورود"
+            name="password"
+            onChange={handleOnChange}
+          />
+          <button type="submit" className="signinButton">
+            ورود
+          </button>
+        </form>
+      )}
+      {isError ? <p>{errorMessage}</p> : null}
+      {isFetching ? <p>Loading</p> : null}
     </div>
   );
 }

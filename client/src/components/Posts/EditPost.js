@@ -7,13 +7,13 @@ import {
 } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useEditPostMutation } from "../../redux/postsApi";
 
 function Editpost(props) {
   const history = useHistory();
-  const location = useLocation();
+  // const location = useLocation();
   console.log(props);
 
   const [userInfo, setuserInfo] = useState({
@@ -42,12 +42,14 @@ function Editpost(props) {
     setCategories([...categories, e.target.value]);
   };
 
-  const [
-    //isError,
-    setError,
-  ] = useState(null);
+  // const [
+  //   isError,
+  //   setError,
+  // ] = useState(null);
 
-  const updatePost = async () => {
+  const updatePost = async (e) => {
+    e.preventDefault();
+
     trigger({
       id: props.editPost._id,
       title: userInfo.title,
