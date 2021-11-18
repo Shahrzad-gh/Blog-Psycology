@@ -4,14 +4,20 @@ import axios from "axios";
 export const loginUser = createAsyncThunk(
   "users/login",
   async (loginInfo, thunkAPI) => {
-    console.log("e", loginInfo);
+    const { email, password } = loginInfo;
     try {
       const response = await axios.post(
         "http://localhost:8080/api/auth/signin",
-        loginInfo
+        { email, password }
       );
-      let data = await response.json();
-      console.log("response", data);
+      //let data = await response.json();
+      console.log(response);
+      if (response.status === 200) {
+        console.log(response.data);
+        return response.data;
+      } else {
+        return thunkAPI.rejectWithValue(response.data.errors);
+      }
     } catch (e) {
       console.log("Error", e.response.data);
       thunkAPI.rejectWithValue(e.response.data);
@@ -31,40 +37,27 @@ export const authSlice = createSlice({
   },
   reducers: {
     // Reducer comes here
+  },
+  extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
-      state.email = payload.email;
-      state.username = payload.name;
+      console.log("filfilled", payload);
+      state.email = payload?.rest.email;
+      state.username = payload?.rest.username;
       state.isFetching = false;
-      state.isSuccess = true;
+      state.isSuccess = payload?.rest ? true : false;
       return state;
     },
     [loginUser.rejected]: (state, { payload }) => {
-      console.log("payload", payload);
+      console.log("Rejected", payload);
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = payload.message;
+      state.errorMessage = payload.errors;
     },
     [loginUser.pending]: (state) => {
+      console.log("pending");
+
       state.isFetching = true;
     },
-  },
-
-  extraReducers: {
-    // Extra reducer comes here
-    // [signupUser.fulfilled]: (state, { payload }) => {
-    //   state.isFetching = false;
-    //   state.isSuccess = true;
-    //   state.email = payload.user.email;
-    //   state.username = payload.user.name;
-    // },
-    // [signupUser.pending]: (state) => {
-    //   state.isFetching = true;
-    // },
-    // [signupUser.rejected]: (state, { payload }) => {
-    //   state.isFetching = false;
-    //   state.isError = true;
-    //   state.errorMessage = payload.message;
-    // },
   },
 });
 
