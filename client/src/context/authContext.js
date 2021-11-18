@@ -15,6 +15,7 @@ function AuthContextProvider(props) {
 
       const userRes = await axios.get("/getuser");
       setUser(userRes.data);
+      console.log(isLoggedIn);
     } catch (err) {
       console.log(err);
     }
