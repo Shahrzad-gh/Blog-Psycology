@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import postsReducer, { postsFetch } from "./postsSlice";
+import { postsFetch } from "./postsSlice";
 import { postsApi } from "./postsApi";
 import { catsApi } from "./catsApi";
 import { authSlice } from "./authSlice";
