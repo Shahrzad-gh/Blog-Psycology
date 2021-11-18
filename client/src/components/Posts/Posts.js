@@ -1,6 +1,6 @@
 import React from "react";
 import Post from "./Post";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useGetAllPostsQuery } from "../../redux/postsApi";
 
 function Posts({ search }) {
