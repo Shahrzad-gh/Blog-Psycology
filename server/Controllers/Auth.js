@@ -40,12 +40,16 @@ const createToken = (id) => {
 };
 
 module.exports.login_post = async (req, res) => {
+  console.log("login-post");
+
   try {
     const user = await User.login(req.body.email, req.body.password);
     const token = createToken(user._id);
-    res.cookie("token", token, { httpOnly: true });
     let { password, ...rest } = user._doc;
-    res.status(200).json({ rest });
+    res
+      .cookie("token", token, { httpOnly: true, maxAge: maxAge * 1000 })
+      .status(200)
+      .json({ rest });
   } catch (error) {
     console.log(error);
     const errors = handleErrors(error);
@@ -73,6 +77,7 @@ module.exports.register_post = async (req, res) => {
 };
 
 module.exports.loggedIn_get = () => {
+  console.log("loggedIn");
   try {
     const token = req.cookies.token;
     if (!token) return res.json(false);
