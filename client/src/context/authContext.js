@@ -12,13 +12,10 @@ function AuthContextProvider(props) {
   async function getLoggedIn() {
     try {
       const loggedInRes = await axios.get(`${URL}/loggedIn`);
-      console.log(loggedInRes);
       setisLoggedIn(loggedInRes.data);
 
-      // const userRes = await axios.get(`${URL}/getuser`);
-      // setUser(userRes.data);
-      // console.log("isLoggedIn", isLoggedIn);
-      // console.log("user", user);
+      const userRes = await axios.get(`${URL}/getuser`);
+      setUser(userRes.data);
     } catch (err) {
       console.log(err);
     }
