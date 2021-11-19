@@ -8,7 +8,6 @@ import "./Home.css";
 
 function Home() {
   const { search } = useLocation();
-  console.log("s", search);
   // const { cat } = location ? location.state : null;
   return (
     <>
