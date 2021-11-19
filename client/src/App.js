@@ -8,36 +8,32 @@ import SignIn from "./components/signIn/SignIn";
 import Settings from "./pages/Settings";
 import Edit from "./components/Posts/Edit";
 import axios from "axios";
-import { AuthContextProvider } from "./context/authContext";
-import authContext from "./context/authContext";
-import { useContext } from "react";
+import { userSelector } from "./redux/authSlice";
+import { useSelector } from "react-redux";
 
 //to save token in cookies
 axios.defaults.withCredentials = true;
 
 function App() {
-  const { isLoggedIn, user } = useContext(authContext);
-
+  const { isFetching, isSuccess, isError, errorMessage } =
+    useSelector(userSelector);
+  console.log("app", isSuccess);
   return (
-    <AuthContextProvider value={isLoggedIn}>
-      <div className="App">
-        <Router>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/post/:postId" component={Article} />
-            <Route path="/create">
-              {isLoggedIn ? <AddPost /> : <SignIn />}
-            </Route>
-            <Route path="/edit">{isLoggedIn ? <Edit /> : <SignIn />}</Route>
-            <Route path="/signin" component={SignIn} />
-            <Route path="/settings">
-              {isLoggedIn ? <Settings /> : <SignIn />}
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    </AuthContextProvider>
+    <div className="App">
+      <Router>
+        <Navbar user={isSuccess} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/post/:postId" component={Article} />
+          <Route path="/create">{isSuccess ? <AddPost /> : <SignIn />}</Route>
+          <Route path="/edit">{isSuccess ? <Edit /> : <SignIn />}</Route>
+          <Route path="/signin" component={SignIn} />
+          <Route path="/settings">
+            {isSuccess ? <Settings /> : <SignIn />}
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
