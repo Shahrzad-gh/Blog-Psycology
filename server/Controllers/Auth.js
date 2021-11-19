@@ -74,11 +74,8 @@ module.exports.register_post = async (req, res) => {
 };
 
 module.exports.loggedIn_get = (req, res) => {
-  console.log("get", req.cookies);
-
   try {
-    const token = req.cookies.token;
-    console.log(token);
+    const token = req.headers.cookie.split("=")[1];
     if (!token) return res.json(false);
 
     jwt.verify(token, process.env.JWT_SECRET);
@@ -91,18 +88,19 @@ module.exports.loggedIn_get = (req, res) => {
 };
 
 module.exports.getUser = (req, res) => {
-  console.log("get");
   try {
-    const token = req.cookies.token;
+    const token = req.headers.cookie.split("=")[1];
     if (!token) return res.json(false);
 
     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+      console.log;
       if (err) {
         res.locals.user = null;
       } else {
         let user = await User.findById(decodedToken.id);
         //res.locals.user = user.role;
-        (user.password = undefined), res.send(user);
+        const { password, ...rest } = user._doc;
+        res.send(rest);
       }
     });
   } catch (err) {
