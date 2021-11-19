@@ -4,7 +4,8 @@ import SignInLinks from "./SignInLinks";
 import SignOutLinks from "./SignOutLinks";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar(props) {
+  console.group(props);
   const user = false;
   return (
     <div className="nav">
