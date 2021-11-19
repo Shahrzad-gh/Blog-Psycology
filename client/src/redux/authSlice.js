@@ -10,17 +10,12 @@ export const loginUser = createAsyncThunk(
         "http://localhost:8080/api/auth/signin",
         { email, password }
       );
-      //let data = await response.json();
-      console.log(response);
-      if (response.status === 200) {
-        console.log(response.data);
-        return response.data;
-      } else {
-        return thunkAPI.rejectWithValue(response.data.errors);
+      return response.data;
+    } catch (err) {
+      if (!err.response) {
+        throw err;
       }
-    } catch (e) {
-      console.log("Error", e.response.data);
-      thunkAPI.rejectWithValue(e.response.data);
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   }
 );
@@ -41,10 +36,10 @@ export const authSlice = createSlice({
   extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
       console.log("filfilled", payload);
-      state.email = payload?.rest.email;
-      state.username = payload?.rest.username;
+      state.email = payload.rest.email;
+      state.username = payload.rest.username;
       state.isFetching = false;
-      state.isSuccess = payload?.rest ? true : false;
+      state.isSuccess = true;
       return state;
     },
     [loginUser.rejected]: (state, { payload }) => {
