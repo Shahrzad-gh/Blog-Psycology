@@ -40,8 +40,6 @@ const createToken = (id) => {
 };
 
 module.exports.login_post = async (req, res) => {
-  console.log("login-post");
-
   try {
     const user = await User.login(req.body.email, req.body.password);
     const token = createToken(user._id);
@@ -51,9 +49,8 @@ module.exports.login_post = async (req, res) => {
       .status(200)
       .json({ rest });
   } catch (error) {
-    console.log(error);
     const errors = handleErrors(error);
-    res.status(400).json({ errors });
+    res.status(401).json({ errors });
   }
 };
 
@@ -76,10 +73,12 @@ module.exports.register_post = async (req, res) => {
   }
 };
 
-module.exports.loggedIn_get = () => {
-  console.log("loggedIn");
+module.exports.loggedIn_get = (req, res) => {
+  console.log("get", req.cookies);
+
   try {
     const token = req.cookies.token;
+    console.log(token);
     if (!token) return res.json(false);
 
     jwt.verify(token, process.env.JWT_SECRET);
@@ -92,6 +91,7 @@ module.exports.loggedIn_get = () => {
 };
 
 module.exports.getUser = (req, res) => {
+  console.log("get");
   try {
     const token = req.cookies.token;
     if (!token) return res.json(false);
