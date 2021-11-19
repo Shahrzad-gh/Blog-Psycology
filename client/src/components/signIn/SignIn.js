@@ -14,14 +14,13 @@ function SignIn() {
 
   const { isFetching, isSuccess, isError, errorMessage } =
     useSelector(userSelector);
-  console.log(useSelector(userSelector));
+
   const handleOnChange = (e) => {
     setLoginInfo({
       ...loginInfo,
       [e.target.name]: e.target.value,
     });
   };
-  console.log(loginInfo);
 
   const handleSignin = (e) => {
     e.preventDefault();
