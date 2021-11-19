@@ -56,16 +56,12 @@ function Editpost(props) {
       desc: userInfo.description.value,
       author: userInfo.author,
       categories: categories,
-    });
-    // console.log(result);
-    // location.state = result;
-    history.push({
-      pathname: `post/${props.editPost._id}`,
-      state: { data: result.data },
+    }).then(() => {
+      history.push(`post/${props.editPost._id}`);
+      window.location.reload();
     });
   };
-  // console.log(result);
-
+  console.log(result);
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
