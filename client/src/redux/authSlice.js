@@ -20,6 +20,20 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk("users/logout", async (thunkAPI) => {
+  try {
+    const response = await axios.get("http://localhost:8080/api/auth/signout");
+    console.log(response.data);
+    window.location.reload();
+    return response.data;
+  } catch (err) {
+    if (!err.response) {
+      throw err;
+    }
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
+
 export const authSlice = createSlice({
   name: "user",
   initialState: {
@@ -46,12 +60,19 @@ export const authSlice = createSlice({
       console.log("Rejected", payload);
       state.isFetching = false;
       state.isError = true;
-      state.errorMessage = payload.errors;
+      state.errorMessage = payload?.errors;
     },
     [loginUser.pending]: (state) => {
       console.log("pending");
-
       state.isFetching = true;
+    },
+    [logoutUser.fulfilled]: (state, { payload }) => {
+      console.log("filfilled", payload);
+      state.username = null;
+      state.email = null;
+      state.isFetching = false;
+      state.isSuccess = true;
+      return state;
     },
   },
 });
