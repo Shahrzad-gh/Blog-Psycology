@@ -46,6 +46,7 @@ li {
   padding: 5px 10px 10px 10px;
   border-radius: 5px;
   border: 1px solid #2b133b2b;
+  cursor: pointer;
 }
 
 .btnAdd {
