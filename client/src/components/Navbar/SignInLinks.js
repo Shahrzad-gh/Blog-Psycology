@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/authSlice";
 function SignInLinks() {
+  const dispatch = useDispatch();
+  const handleSignout = (e) => {
+    e.preventDefault();
+    dispatch(logoutUser());
+  };
   return (
     <ul>
       <li>
@@ -16,7 +22,9 @@ function SignInLinks() {
         <Link to="/create">مقاله جدید</Link>
       </li>
 
-      <li className="btn">خروج</li>
+      <li className="btn" onClick={handleSignout}>
+        خروج
+      </li>
     </ul>
   );
 }
