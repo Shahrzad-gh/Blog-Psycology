@@ -65,12 +65,18 @@ module.exports.register_post = async (req, res) => {
       password,
     });
     const token = createToken(user._id);
-    res.cookie("token", token, { httpOnly: false, maxAge: maxAge * 1000 });
+    res.cookie("token", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(201).json({ user });
   } catch (error) {
     const errors = handleErrors(error);
     res.status(400).json({ errors });
   }
+};
+
+module.exports.logout_get = async (req, res) => {
+  console.log(req.cookies.token);
+  res.clearCookie("token");
+  /// res.cookie("token", "", { httpOnly: true, maxAge: 1 });
 };
 
 module.exports.loggedIn_get = (req, res) => {
