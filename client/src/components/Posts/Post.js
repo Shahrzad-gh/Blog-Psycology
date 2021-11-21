@@ -1,12 +1,14 @@
 import React from "react";
 import "./Post.css";
 import { Link } from "react-router-dom";
+import moment from "moment";
+
 function Post({ post }) {
   return (
     <div className="post">
       <img
         className="postImg"
-        src="https://img.freepik.com/free-vector/festival-light-happy-diwali-realistic-diya-design_1017-34302.jpg?size=338&ext=jpg&ga=GA1.2.107189515.1631794766"
+        src={post.photo?.img}
         alt="عکس مقاله"
         title="مقاله"
       />
@@ -22,9 +24,15 @@ function Post({ post }) {
         <Link to={{ pathname: `post/${post._id}`, state: { id: post._id } }}>
           <span className="postTitle">{post.title}</span>
         </Link>
-        <span className="postDate">یک ساعت پیش</span>
+        <div className="date">
+          <span className="postDate">
+            ایجاد{moment(post.createdAt).calendar()}
+          </span>
+          <span className="postDate">
+            به روز رسانی{moment(post.updatedAt).calendar()}
+          </span>
+        </div>
       </div>
-      {/* <p className="postDescription">{post.desc}</p> */}
       <div
         className="postDescription"
         dangerouslySetInnerHTML={{ __html: post.desc }}
