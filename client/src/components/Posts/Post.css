@@ -65,3 +65,6 @@ a:visited {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+.postDescription img {
+  display: none;
+}
