@@ -11,24 +11,21 @@ import axios from "axios";
 import { authUser, clearState, userSelector } from "./redux/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import AuthContext from "./context/authContext";
-import { useContext } from "react";
 
 //to save token in cookies
 axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  const { isFetching, isSuccess, isError, errorMessage } =
-    useSelector(userSelector);
+  const { isSuccess } = useSelector(userSelector);
 
   useEffect(() => {
     dispatch(clearState());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(authUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

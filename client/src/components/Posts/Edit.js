@@ -6,11 +6,9 @@ import { useLocation } from "react-router";
 // import { Link } from "react-router-dom";
 
 const Edit = (props) => {
-  console.log("props", props);
   const location = useLocation();
   // const id = location.pathname.split("/")[2];
   const { data } = location?.state || {};
-  console.log("p", location?.state);
 
   return (
     <div>

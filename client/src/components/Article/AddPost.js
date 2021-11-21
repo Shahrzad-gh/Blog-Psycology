@@ -38,7 +38,6 @@ function AddPost() {
   const handleAddCat = (e) => {
     setCategories([...categories, e.target.value]);
   };
-  console.log(categories);
   // const [
   //   isError,
   //   setError,

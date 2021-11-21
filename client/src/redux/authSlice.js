@@ -36,7 +36,6 @@ export const authUser = createAsyncThunk("users/auth", async (thunkAPI) => {
 export const logoutUser = createAsyncThunk("users/logout", async (thunkAPI) => {
   try {
     const response = await axios.get("http://localhost:8080/api/auth/signout");
-    console.log(response.data);
     window.location.reload();
     return response.data;
   } catch (err) {
@@ -60,7 +59,6 @@ export const authSlice = createSlice({
   reducers: {
     // Reducer comes here
     clearState: (state, action) => {
-      console.log("reducer", action);
       state.username = "";
       state.email = "";
       state.isFetching = false;
@@ -72,7 +70,6 @@ export const authSlice = createSlice({
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
-      console.log("filfilled", payload);
       state.email = payload?.email;
       state.username = payload?.username;
       state.isFetching = false;
@@ -80,17 +77,14 @@ export const authSlice = createSlice({
       return state;
     },
     [loginUser.rejected]: (state, { payload }) => {
-      console.log("Rejected", payload);
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload?.errors;
     },
     [loginUser.pending]: (state) => {
-      console.log("pending");
       state.isFetching = true;
     },
     [authUser.fulfilled]: (state, { payload }) => {
-      console.log("filfilled", payload);
       state.email = payload.email;
       state.username = payload.username;
       state.isFetching = false;
@@ -98,17 +92,14 @@ export const authSlice = createSlice({
       return state;
     },
     [authUser.rejected]: (state, { payload }) => {
-      console.log("Rejected", payload);
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload?.errors;
     },
     [authUser.pending]: (state) => {
-      console.log("pending");
       state.isFetching = true;
     },
     [logoutUser.fulfilled]: (state, { payload }) => {
-      console.log("filfilled", payload);
       state.username = null;
       state.email = null;
       state.isFetching = false;

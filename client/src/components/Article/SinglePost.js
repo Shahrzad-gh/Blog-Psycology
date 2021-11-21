@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 function SinglePost() {
   const location = useLocation();
-  console.log(location);
   const id = location.pathname.split("/")[2];
 
   const {

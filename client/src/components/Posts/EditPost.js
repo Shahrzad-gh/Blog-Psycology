@@ -13,8 +13,6 @@ import { useEditPostMutation } from "../../redux/postsApi";
 
 function Editpost(props) {
   const history = useHistory();
-  // const location = useLocation();
-  console.log(props);
 
   const [userInfo, setuserInfo] = useState({
     title: props.editPost.title,
@@ -36,7 +34,7 @@ function Editpost(props) {
   const onEditorStateChange = (editorState) => {
     setDescription(editorState);
   };
-  const [trigger, result] = useEditPostMutation();
+  const [trigger] = useEditPostMutation();
 
   const handleUpdateCat = (e) => {
     setCategories([...categories, e.target.value]);
@@ -61,7 +59,6 @@ function Editpost(props) {
       window.location.reload();
     });
   };
-  console.log(result);
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
