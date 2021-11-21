@@ -11,6 +11,8 @@ const cookieParser = require("cookie-parser");
 
 dotenv.config();
 app.use(express.json());
+app.use(cookieParser());
+
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -33,7 +35,6 @@ mongoose
     })
   )
   .catch((err) => console.log(err));
-app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/cat", categoryRoutes);
 app.use("/api/user", userRoutes);
