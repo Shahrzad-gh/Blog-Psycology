@@ -45,7 +45,7 @@ module.exports.login_post = async (req, res) => {
     const token = createToken(user._id);
     let { password, ...rest } = user._doc;
     res
-      .cookie("token", token, { httpOnly: true, maxAge: maxAge * 1000 })
+      .cookie("token", token, { httpOnly: false, maxAge: maxAge * 1000 })
       .status(200)
       .json(rest);
   } catch (error) {
@@ -65,7 +65,7 @@ module.exports.register_post = async (req, res) => {
       password,
     });
     const token = createToken(user._id);
-    res.cookie("token", token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.cookie("token", token, { httpOnly: false, maxAge: maxAge * 1000 });
     res.status(201).json({ user });
   } catch (error) {
     const errors = handleErrors(error);
@@ -75,7 +75,7 @@ module.exports.register_post = async (req, res) => {
 
 module.exports.logout_get = async (req, res) => {
   try {
-    res.cookie("token", "", { httpOnly: true, maxAge: 1 });
+    res.cookie("token", "", { httpOnly: false, maxAge: 1 });
     res.status(200).json("OK");
   } catch (error) {
     console.log(error);
