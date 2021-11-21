@@ -47,7 +47,7 @@ module.exports.login_post = async (req, res) => {
     res
       .cookie("token", token, { httpOnly: true, maxAge: maxAge * 1000 })
       .status(200)
-      .json({ rest });
+      .json(rest);
   } catch (error) {
     const errors = handleErrors(error);
     res.status(401).json({ errors });
@@ -74,9 +74,12 @@ module.exports.register_post = async (req, res) => {
 };
 
 module.exports.logout_get = async (req, res) => {
-  console.log(req.cookies.token);
-  res.clearCookie("token");
-  /// res.cookie("token", "", { httpOnly: true, maxAge: 1 });
+  try {
+    res.cookie("token", "", { httpOnly: true, maxAge: 1 });
+    res.status(200).json("OK");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports.loggedIn_get = (req, res) => {
@@ -95,13 +98,14 @@ module.exports.loggedIn_get = (req, res) => {
 
 module.exports.getUser = (req, res) => {
   try {
-    const token = req.headers.cookie.split("=")[1];
+    //const token = req.headers.cookie.split("=")[1];
+    const token = req.cookies.token;
     if (!token) return res.json(false);
 
     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
-      console.log;
       if (err) {
         res.locals.user = null;
+        res.status(404).send(false);
       } else {
         let user = await User.findById(decodedToken.id);
         //res.locals.user = user.role;
