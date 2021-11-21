@@ -47,6 +47,12 @@ a:visited {
   margin-top: 15px;
   cursor: pointer;
 }
+.date {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
 .postDate {
   font-style: italic;
   font-size: 13px;
