@@ -5,7 +5,7 @@ import {
 } from "../../redux/postsApi";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import moment from "moment";
 function SinglePost() {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -28,11 +28,7 @@ function SinglePost() {
       {
         data && (
           <div className="singlePostWrapper">
-            <img
-              src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-              alt="عکس مقاله"
-              title="عنوان مقاله"
-            />
+            <img src={data.photo.img} alt="عکس مقاله" title="عنوان مقاله" />
             <h1 className="SinglePostTitle">
               {data.title}
               <div className="singlePostEdit">
@@ -52,7 +48,12 @@ function SinglePost() {
               <span className="singlePostAuthor">
                 نویسنده: <b>{data.author}</b>
               </span>
-              <span className="singlePostDate">{data.createdAt}</span>
+              <span className="singlePostDate">
+                ایجاد {moment(data.createdAt).calendar()}
+              </span>
+              <span className="singlePostDate">
+                به روز رسانی {moment(data.updatedAt).calendar()}
+              </span>
             </div>
             <p
               className="singlePosDescription"
