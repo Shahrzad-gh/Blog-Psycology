@@ -6,6 +6,7 @@ export const postsApi = createApi({
   reducerPath: "postsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080/api/post",
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     getAllPosts: builder.query({
