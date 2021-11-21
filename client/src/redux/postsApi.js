@@ -29,10 +29,10 @@ export const postsApi = createApi({
       }),
     }),
     editPost: builder.mutation({
-      query: ({ id, ...rest }) => ({
+      query: ({ id, postData }) => ({
         url: `edit/${id}`,
         method: "PUT",
-        body: rest,
+        body: postData,
       }),
     }),
     deletePost: builder.mutation({
