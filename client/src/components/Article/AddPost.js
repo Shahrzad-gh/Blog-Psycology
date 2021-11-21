@@ -5,15 +5,24 @@ import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./AddPost.css";
 import { useAddPostMutation } from "../../redux/postsApi";
+import { useHistory } from "react-router-dom";
 
-function AddPost() {
-  const user = "Shery";
-
+function AddPost({ username }) {
+  const user = username;
+  const [picture, setPicture] = useState();
+  const history = useHistory();
   const [userInfo, setuserInfo] = useState({
     title: "",
     author: user,
   });
+  let url;
+  function handleUploadImage(e) {
+    setPicture(e.target.files[0]);
+    url = URL.createObjectURL(e.target.files[0]);
+    console.log(url);
+  }
 
+  console.log(url);
   const handleOnChange = (e) => {
     setuserInfo({
       ...userInfo,
@@ -36,24 +45,29 @@ function AddPost() {
   ] = useAddPostMutation();
 
   const handleAddCat = (e) => {
-    setCategories([...categories, e.target.value]);
+    let newArray = [...categories, e.target.value];
+    if (categories.includes(e.target.value)) {
+      newArray = newArray.filter((c) => c !== e.target.value);
+    }
+    setCategories(newArray);
   };
-  // const [
-  //   isError,
-  //   setError,
-  // ] = useState(null);
 
   const addDetails = async (e) => {
     e.preventDefault();
-
-    trigger({
-      title: userInfo.title,
-      desc: userInfo.description.value,
-      author: userInfo.author,
-      categories: categories,
+    const postData = new FormData();
+    postData.append("title", userInfo.title);
+    postData.append("desc", userInfo.description.value);
+    postData.append("author", userInfo.author);
+    for (let cat of categories) {
+      postData.append("categories", cat);
+    }
+    postData.append("photo", picture);
+    trigger(postData).then(() => {
+      history.push(`/`);
+      window.location.reload();
     });
   };
-
+  console.log(picture);
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
@@ -62,18 +76,13 @@ function AddPost() {
           type="file"
           id="postImage"
           accept="image/*"
-          style={{ display: "none" }}
+          onChange={handleUploadImage}
         />
         <label htmlFor="postImage">
           <i className="far fa-plus-square"></i>
           &nbsp; اضافه کردن عکس عنوان
         </label>
-        {/* <img
-          className="postImg"
-          src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-          alt="عکس"
-          title="مقاله"
-        /> */}
+        <img className="postImg" src={url} alt="عکس" title="مقاله" />
       </div>
       <form className="addForm" onSubmit={addDetails}>
         <div className="addFormGroup">
