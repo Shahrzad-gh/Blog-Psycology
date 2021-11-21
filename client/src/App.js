@@ -17,7 +17,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  const { isSuccess } = useSelector(userSelector);
+  const { isSuccess, username } = useSelector(userSelector);
 
   useEffect(() => {
     dispatch(clearState());
@@ -30,15 +30,17 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar user={isSuccess} />
+        <Navbar user={isSuccess} username={username} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/post/:postId" component={Article} />
-          <Route path="/create">{isSuccess ? <AddPost /> : <SignIn />}</Route>
+          <Route path="/create">
+            {isSuccess ? <AddPost username={username} /> : <SignIn />}
+          </Route>
           <Route path="/edit">{isSuccess ? <Edit /> : <SignIn />}</Route>
           <Route path="/signin" component={SignIn} />
           <Route path="/settings">
-            {isSuccess ? <Settings /> : <SignIn />}
+            {isSuccess ? <Settings username={username} /> : <SignIn />}
           </Route>
         </Switch>
       </Router>
