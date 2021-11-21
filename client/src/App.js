@@ -8,16 +8,28 @@ import SignIn from "./components/signIn/SignIn";
 import Settings from "./pages/Settings";
 import Edit from "./components/Posts/Edit";
 import axios from "axios";
-import { userSelector } from "./redux/authSlice";
-import { useSelector } from "react-redux";
+import { authUser, clearState, userSelector } from "./redux/authSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import AuthContext from "./context/authContext";
+import { useContext } from "react";
 
 //to save token in cookies
 axios.defaults.withCredentials = true;
 
 function App() {
+  const dispatch = useDispatch();
   const { isFetching, isSuccess, isError, errorMessage } =
     useSelector(userSelector);
-  console.log("app", isSuccess);
+
+  useEffect(() => {
+    dispatch(clearState());
+  }, []);
+
+  useEffect(() => {
+    dispatch(authUser());
+  }, []);
+
   return (
     <div className="App">
       <Router>
