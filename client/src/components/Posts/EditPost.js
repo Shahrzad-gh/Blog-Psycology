@@ -13,9 +13,11 @@ import { useEditPostMutation } from "../../redux/postsApi";
 
 function Editpost(props) {
   const history = useHistory();
+  const [picture, setPicture] = useState();
 
   const [userInfo, setuserInfo] = useState({
     title: props.editPost.title,
+    author: props.editPost.author,
   });
 
   const handleOnChange = (e) => {
@@ -24,6 +26,9 @@ function Editpost(props) {
       [e.target.name]: e.target.value,
     });
   };
+  function handleUploadImage(e) {
+    setPicture(e.target.files[0]);
+  }
 
   let editorState = EditorState.createWithContent(
     ContentState.createFromBlockArray(convertFromHTML(props.editPost.desc))
@@ -37,25 +42,25 @@ function Editpost(props) {
   const [trigger] = useEditPostMutation();
 
   const handleUpdateCat = (e) => {
-    setCategories([...categories, e.target.value]);
+    let newArray = [...categories, e.target.value];
+    if (categories.includes(e.target.value)) {
+      newArray = newArray.filter((c) => c !== e.target.value);
+    }
+    setCategories(newArray);
   };
-
-  // const [
-  //   isError,
-  //   setError,
-  // ] = useState(null);
-
   const updatePost = async (e) => {
     e.preventDefault();
-
-    trigger({
-      id: props.editPost._id,
-      title: userInfo.title,
-      desc: userInfo.description.value,
-      author: userInfo.author,
-      categories: categories,
-    }).then(() => {
-      history.push(`post/${props.editPost._id}`);
+    const id = props.editPost._id;
+    const postData = new FormData();
+    postData.append("title", userInfo.title);
+    postData.append("desc", userInfo.description.value);
+    postData.append("author", userInfo.author);
+    for (let cat of categories) {
+      postData.append("categories", cat);
+    }
+    postData.append("photo", picture);
+    trigger({ id, postData }).then(() => {
+      history.push(`/`);
       window.location.reload();
     });
   };
@@ -67,18 +72,13 @@ function Editpost(props) {
           type="file"
           id="postImage"
           accept="image/*"
-          style={{ display: "none" }}
+          onChange={handleUploadImage}
         />
         <label htmlFor="postImage">
           <i className="far fa-plus-square"></i>
           &nbsp; اضافه کردن عکس عنوان
         </label>
-        {/* <img
-          className="postImg"
-          src="https://image.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-          alt="عکس"
-          title="مقاله"
-        /> */}
+        <img className="postImg" src={picture} alt="عکس" title="مقاله" />
       </div>
       <form className="addForm" onSubmit={updatePost}>
         <div className="addFormGroup">
