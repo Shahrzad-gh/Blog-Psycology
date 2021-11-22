@@ -51,6 +51,7 @@ export const authSlice = createSlice({
   initialState: {
     username: "",
     email: "",
+    photo: "",
     isFetching: false,
     isSuccess: Cookies.get("token") ? true : false,
     isError: false,
@@ -61,6 +62,7 @@ export const authSlice = createSlice({
     clearState: (state, action) => {
       state.username = "";
       state.email = "";
+      state.photo = "";
       state.isFetching = false;
       state.isSuccess = false;
       state.isError = false;
@@ -73,6 +75,7 @@ export const authSlice = createSlice({
       state.email = payload?.email;
       state.username = payload?.username;
       state.isFetching = false;
+      state.photo = payload?.photo;
       state.isSuccess = payload ? true : false;
       return state;
     },
@@ -87,6 +90,7 @@ export const authSlice = createSlice({
     [authUser.fulfilled]: (state, { payload }) => {
       state.email = payload.email;
       state.username = payload.username;
+      state.photo = payload.photo;
       state.isFetching = false;
       state.isSuccess = payload ? true : false;
       return state;
