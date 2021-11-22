@@ -14,10 +14,12 @@ import { useEditPostMutation } from "../../redux/postsApi";
 function Editpost(props) {
   const history = useHistory();
   const [picture, setPicture] = useState();
+  const [url, setUrl] = useState("");
 
   const [userInfo, setuserInfo] = useState({
     title: props.editPost.title,
     author: props.editPost.author,
+    photo: props.editPost.photo,
   });
 
   const handleOnChange = (e) => {
@@ -28,6 +30,7 @@ function Editpost(props) {
   };
   function handleUploadImage(e) {
     setPicture(e.target.files[0]);
+    setUrl(URL.createObjectURL(e.target.files[0]));
   }
 
   let editorState = EditorState.createWithContent(
@@ -60,10 +63,11 @@ function Editpost(props) {
     }
     postData.append("photo", picture);
     trigger({ id, postData }).then(() => {
-      history.push(`/`);
+      history.push(`/post/${id}`);
       window.location.reload();
     });
   };
+  console.log(userInfo);
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
@@ -72,13 +76,23 @@ function Editpost(props) {
           type="file"
           id="postImage"
           accept="image/*"
+          style={{ display: "none" }}
           onChange={handleUploadImage}
         />
         <label htmlFor="postImage">
           <i className="far fa-plus-square"></i>
           &nbsp; اضافه کردن عکس عنوان
         </label>
-        <img className="postImg" src={picture} alt="عکس" title="مقاله" />
+        {picture ? (
+          <img className="postImg" src={url} alt="عکس" title="مقاله" />
+        ) : (
+          <img
+            className="postImg"
+            src={userInfo.photo.img}
+            alt="عکس"
+            title="مقاله"
+          />
+        )}
       </div>
       <form className="addForm" onSubmit={updatePost}>
         <div className="addFormGroup">
