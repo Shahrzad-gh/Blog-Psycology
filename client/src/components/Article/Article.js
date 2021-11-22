@@ -3,10 +3,10 @@ import Sidebar from "../Sidebar/Sidebar";
 import SinglePost from "./SinglePost";
 import "./Article.css";
 
-function Article() {
+function Article({ username }) {
   return (
     <div className="article">
-      <SinglePost />
+      <SinglePost username={username} />
       <Sidebar />
     </div>
   );
