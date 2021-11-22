@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter your last name"],
     },
+    photo: {
+      img: { type: String },
+      id: { type: String },
+    },
     username: {
       type: String,
       required: [true, "Please enter an username"],
