@@ -6,7 +6,7 @@ import {
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import moment from "moment";
-function SinglePost() {
+function SinglePost({ username }) {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
 
@@ -23,6 +23,7 @@ function SinglePost() {
   const handleDeletePost = () => {
     trriger(id);
   };
+
   return (
     <div className="singlePost">
       {
@@ -32,16 +33,22 @@ function SinglePost() {
             <h1 className="SinglePostTitle">
               {data.title}
               <div className="singlePostEdit">
-                <Link
-                  to={{ pathname: `/edit`, state: { data } }}
-                  className="singlePostIcon"
-                >
-                  <i className=" far fa-edit"></i>
-                </Link>
-                <i
-                  className="singlePostIcon far fa-trash-alt"
-                  onClick={handleDeletePost}
-                ></i>
+                {data.author === username ? (
+                  <>
+                    <Link
+                      to={{ pathname: `/edit`, state: { data } }}
+                      className="singlePostIcon"
+                    >
+                      <i className=" far fa-edit"></i>
+                    </Link>
+                    <i
+                      className="singlePostIcon far fa-trash-alt"
+                      onClick={handleDeletePost}
+                    ></i>
+                  </>
+                ) : (
+                  <></>
+                )}
               </div>
             </h1>
             <div className="singlePostInfo">
