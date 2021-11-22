@@ -107,7 +107,10 @@ module.exports.getAllPosts_get = async (req, res) => {
   try {
     let posts;
     if (author) {
-      posts = await Post.find({ author });
+      //search case insensitive
+      posts = await Post.find({
+        author: { $regex: `${author}`, $options: "i" },
+      });
     } else if (cat) {
       posts = await Post.find({
         categories: {
