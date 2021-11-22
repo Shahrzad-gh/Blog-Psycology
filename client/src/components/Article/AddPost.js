@@ -11,15 +11,15 @@ function AddPost({ username }) {
   const user = username;
   const [picture, setPicture] = useState();
   const history = useHistory();
+  const [url, setUrl] = useState("");
   const [userInfo, setuserInfo] = useState({
     title: "",
     author: user,
   });
-  let url;
+
   function handleUploadImage(e) {
     setPicture(e.target.files[0]);
-    url = URL.createObjectURL(e.target.files[0]);
-    console.log(url);
+    setUrl(URL.createObjectURL(e.target.files[0]));
   }
 
   console.log(url);
@@ -76,6 +76,7 @@ function AddPost({ username }) {
           type="file"
           id="postImage"
           accept="image/*"
+          style={{ display: "none" }}
           onChange={handleUploadImage}
         />
         <label htmlFor="postImage">
