@@ -1,5 +1,6 @@
 const User = require("../Models/User");
 const Post = require("../Models/Post");
+const cloudinary = require("../utils/cloudinary");
 
 module.exports.removeUser_delete = async (req, res) => {
   const userId = res.locals.user._id;
@@ -18,18 +19,44 @@ module.exports.removeUser_delete = async (req, res) => {
 };
 
 module.exports.editUser_put = async (req, res) => {
-  const userId = res.locals.user._id;
+  const name = req.params.username;
+  let photo = { img: "", id: "" };
+  const { username, email } = req.body;
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+    api_key: process.env.CLOUDINARY_APIKEY,
+    api_secret: process.env.CLOUDINARY_APISECRET,
+  });
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    console.log("update", updatedUser);
-    res.status(200).json(updatedUser);
+    const user = await User.findOne({ username: name });
+    if (
+      user.username.toLowerCase() === res.locals.user.username.toLowerCase()
+    ) {
+      try {
+        if (req.file !== undefined) {
+          const result = await cloudinary.uploader.upload(req.file.path);
+          photo.img = result.secure_url;
+          photo.id = result.public_id;
+        } else {
+          photo = { img: user.photo.img, id: user.photo.id };
+        }
+        const updatedUser = await User.findByIdAndUpdate(
+          user._id,
+          {
+            $set: { username, email, photo },
+          },
+          { new: true }
+        );
+        res.status(200).json(updatedUser);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+      }
+    } else {
+      res.status(401).json("you should update your account");
+    }
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };
