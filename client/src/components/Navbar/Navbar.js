@@ -4,7 +4,7 @@ import SignInLinks from "./SignInLinks";
 import SignOutLinks from "./SignOutLinks";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ user }) {
+export default function Navbar({ user, username, photo }) {
   return (
     <div className="nav">
       <div className="navbar">
@@ -16,7 +16,13 @@ export default function Navbar({ user }) {
           <li>تماس با ما</li>
         </ul>
       </div>
-      <div className="links">{user ? <SignInLinks /> : <SignOutLinks />}</div>
+      <div className="links">
+        {user ? (
+          <SignInLinks username={username} photo={photo} />
+        ) : (
+          <SignOutLinks />
+        )}
+      </div>
     </div>
   );
 }
