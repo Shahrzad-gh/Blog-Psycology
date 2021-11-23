@@ -12,6 +12,6 @@ router.put(
   userController.editUser_put
 );
 router.get("/get/user/:id", userController.getUserById_get);
-router.get("/get", userController.getUserByUsername_get);
+router.get("/:username", userController.getUserByUsername_get);
 
 module.exports = router;
