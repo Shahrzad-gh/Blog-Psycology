@@ -38,7 +38,8 @@ li {
   width: 50px;
   height: 50px;
   object-fit: cover;
-  background-color: efefef;
+  border: 2px solid rgb(180, 180, 180);
+  background-color: #efefef;
   background-size: cover;
 }
 
