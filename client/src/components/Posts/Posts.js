@@ -16,11 +16,12 @@ function Posts({ search }) {
 
   return (
     <div className="posts">
-      {data?.length > 0 ? (
+      {data && data.map((post) => <Post key={post._id} post={post} />)}
+      {/* {data?.length > 0 ? (
         data.map((post) => <Post key={post._id} post={post} />)
       ) : (
         <p>هیچ پستی یافت نشد</p>
-      )}
+      )} */}
     </div>
   );
 }
