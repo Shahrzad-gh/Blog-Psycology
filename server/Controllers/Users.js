@@ -20,7 +20,6 @@ module.exports.removeUser_delete = async (req, res) => {
 
 module.exports.editUser_put = async (req, res) => {
   const name = req.params.username;
-  console.log(name);
   let photo = { img: "", id: "" };
   const { username, email, description } = req.body;
   cloudinary.config({
@@ -83,12 +82,16 @@ module.exports.getUserById_get = async (req, res) => {
 };
 
 module.exports.getUserByUsername_get = async (req, res) => {
-  const name = req.body.username;
+  const { username } = req.params;
   try {
-    const user = await User.findOne({ username: name });
+    const user = await User.findOne({ username });
+    console.log(user);
     const { password, ...rest } = user._doc;
+    console.log(rest);
+
     res.status(200).json(rest);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };
