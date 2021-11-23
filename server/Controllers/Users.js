@@ -20,8 +20,9 @@ module.exports.removeUser_delete = async (req, res) => {
 
 module.exports.editUser_put = async (req, res) => {
   const name = req.params.username;
+  console.log(name);
   let photo = { img: "", id: "" };
-  const { username, email } = req.body;
+  const { username, email, description } = req.body;
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUDNAME,
     api_key: process.env.CLOUDINARY_APIKEY,
@@ -43,10 +44,20 @@ module.exports.editUser_put = async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(
           user._id,
           {
-            $set: { username, email, photo },
+            $set: { username, email, photo, description },
           },
           { new: true }
         );
+        try {
+          const post = await Post.updateMany(
+            { author: name },
+            //{ author },
+            { $set: { author: updatedUser.username } },
+            { new: true }
+          );
+        } catch (error) {
+          console.log(error);
+        }
         res.status(200).json(updatedUser);
       } catch (error) {
         console.log(error);
@@ -64,6 +75,17 @@ module.exports.editUser_put = async (req, res) => {
 module.exports.getUserById_get = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
+    const { password, ...rest } = user._doc;
+    res.status(200).json(rest);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports.getUserByUsername_get = async (req, res) => {
+  const name = req.body.username;
+  try {
+    const user = await User.findOne({ username: name });
     const { password, ...rest } = user._doc;
     res.status(200).json(rest);
   } catch (error) {
