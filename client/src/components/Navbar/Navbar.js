@@ -12,8 +12,13 @@ export default function Navbar({ user, username, photo }) {
           <li>
             <Link to="/">خانه</Link>
           </li>
-          <li>درباره ما</li>
-          <li>تماس با ما</li>
+
+          <li>
+            <Link to="/about">درباره ما</Link>
+          </li>
+          <li>
+            <Link to="/contact"> تماس با ما</Link>
+          </li>
         </ul>
       </div>
       <div className="links">
