@@ -17,8 +17,7 @@ export const usersApi = createApi({
     }),
     getUserByUsername: builder.query({
       query: (username) => ({
-        url: `get/`,
-        body: username,
+        url: `/${username}`,
       }),
     }),
     addUser: builder.mutation({
@@ -47,10 +46,10 @@ export const usersApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const {
-  useGetAllUsersQuery,
-  useGetUserByIdQuery,
+  // useGetAllUsersQuery,
+  // useGetUserByIdQuery,
+  // useAddUserMutation,
+  // useDeleteUserMutation,
   useGetUserByUsernameQuery,
-  useAddUserMutation,
   useEditUserMutation,
-  useDeleteUserMutation,
 } = usersApi;
