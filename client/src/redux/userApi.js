@@ -13,10 +13,13 @@ export const usersApi = createApi({
       query: (search) => ({ url: `getall/${search}` }),
     }),
     getUserById: builder.query({
-      query: (id) => `getall?cat=${id}`,
+      query: (id) => `get/${id}`,
     }),
     getUserByUsername: builder.query({
-      query: (username) => `getall?user=${username}`,
+      query: (username) => ({
+        url: `get/`,
+        body: username,
+      }),
     }),
     addUser: builder.mutation({
       query: (user) => ({
