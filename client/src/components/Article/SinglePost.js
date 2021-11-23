@@ -1,27 +1,19 @@
 import React from "react";
-import {
-  useDeletePostMutation,
-  useGetPostByIdQuery,
-} from "../../redux/postsApi";
-import { useLocation } from "react-router-dom";
+import { useDeletePostMutation } from "../../redux/postsApi";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGetUserByUsernameQuery } from "../../redux/userApi";
-function SinglePost({ username }) {
-  const location = useLocation();
-  const id = location.pathname.split("/")[2];
-  const {
-    data,
-    // error, isLoading
-  } = useGetPostByIdQuery(id);
-
+function SinglePost({ username, data, id }) {
+  console.log(data);
   const [
     trriger,
     // , result
   ] = useDeletePostMutation();
-  const { userData } = useGetUserByUsernameQuery(data?.author);
-  console.log(userData);
 
+  const user = useGetUserByUsernameQuery(data.author);
+  console.log(useGetUserByUsernameQuery(data.author));
+  console.log(user?.data);
+  const userData = null;
   const handleDeletePost = () => {
     trriger(id);
   };
@@ -80,22 +72,22 @@ function SinglePost({ username }) {
               <p className="postTagItem">آرامش</p>
             </div>
             <div className="aboutAuthor">
-              {userData?.photo ? (
+              {user.data ? (
                 <img
                   className="authorImg"
-                  src={userData.photo.img}
+                  src={user.data.photo?.img}
                   alt="نویسنده"
                   title="نویسنده"
                 />
               ) : (
                 <img
                   className="authorImg"
-                  src="https://image.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg"
+                  src="https://res.cloudinary.com/dw8wf8gps/image/upload/v1637507302/default-text-effect_67638-192_sgvqyk.jpg"
                   alt="نویسنده"
                   title="نویسنده"
                 />
               )}
-              <p>{userData?.description}</p>
+              <p>{user.data?.description}</p>
             </div>
           </div>
         )
