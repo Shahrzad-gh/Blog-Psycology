@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import { useEditUserMutation } from "../redux/userApi";
 import { useHistory } from "react-router-dom";
 
-function Settings({ username, email, photo }) {
+function Settings({ username, email, photo, description }) {
   const [picture, setPicture] = useState();
   const [url, setUrl] = useState("");
   const history = useHistory();
@@ -13,10 +13,12 @@ function Settings({ username, email, photo }) {
     setPicture(e.target.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
   }
+  console.log(description);
   const [userInfo, setUserInfo] = useState({
     email: email,
     username: username,
     password: "",
+    description: description,
   });
 
   const handleOnChange = (e) => {
@@ -33,6 +35,7 @@ function Settings({ username, email, photo }) {
     userData.append("username", userInfo.username);
     userData.append("email", userInfo.email);
     userData.append("author", userInfo.password);
+    userData.append("description", userInfo.description);
     userData.append("photo", picture);
     trigger({ username, userData }).then(() => {
       history.push(`/settings`);
@@ -108,6 +111,14 @@ function Settings({ username, email, photo }) {
             maxLength="6"
             name="password"
             value={userInfo.password}
+            onChange={handleOnChange}
+          />
+          <label htmlFor="desc">درباره من</label>
+          <textarea
+            id="desc"
+            maxLength="60"
+            name="description"
+            value={userInfo.description}
             onChange={handleOnChange}
           />
           <button type="submit" className="settingdSubmit">
