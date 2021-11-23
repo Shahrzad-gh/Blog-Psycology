@@ -11,6 +11,7 @@ router.put(
   upload.single("photo"),
   userController.editUser_put
 );
-router.get("/get/:id", userController.getUserById_get);
+router.get("/get/user/:id", userController.getUserById_get);
+router.get("/get", userController.getUserByUsername_get);
 
 module.exports = router;
