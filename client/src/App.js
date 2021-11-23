@@ -11,13 +11,17 @@ import axios from "axios";
 import { authUser, clearState, userSelector } from "./redux/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
+import NotFound from "./components/NotFound";
 
 //to save token in cookies
 axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  const { isSuccess, username, email, photo } = useSelector(userSelector);
+  const { isSuccess, username, email, photo, description } =
+    useSelector(userSelector);
 
   useEffect(() => {
     dispatch(clearState());
@@ -26,6 +30,7 @@ function App() {
   useEffect(() => {
     dispatch(authUser());
   }, [dispatch]);
+
   return (
     <div className="App">
       <Router>
@@ -42,11 +47,19 @@ function App() {
           <Route path="/signin" component={SignIn} />
           <Route path="/settings">
             {isSuccess ? (
-              <Settings username={username} email={email} photo={photo} />
+              <Settings
+                username={username}
+                email={email}
+                photo={photo}
+                description={description}
+              />
             ) : (
               <SignIn />
             )}
           </Route>
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     </div>
