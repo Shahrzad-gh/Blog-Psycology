@@ -56,6 +56,7 @@ export const authSlice = createSlice({
     isSuccess: Cookies.get("token") ? true : false,
     isError: false,
     errorMessage: "",
+    description: "",
   },
   reducers: {
     // Reducer comes here
@@ -67,6 +68,8 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.errorMessage = "";
+      state.description = "";
+
       return state;
     },
   },
@@ -91,6 +94,7 @@ export const authSlice = createSlice({
       state.email = payload.email;
       state.username = payload.username;
       state.photo = payload.photo;
+      state.description = payload.description;
       state.isFetching = false;
       state.isSuccess = payload ? true : false;
       return state;
