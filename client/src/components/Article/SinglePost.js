@@ -4,16 +4,13 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGetUserByUsernameQuery } from "../../redux/userApi";
 function SinglePost({ username, data, id }) {
-  console.log(data);
   const [
     trriger,
     // , result
   ] = useDeletePostMutation();
 
   const user = useGetUserByUsernameQuery(data.author);
-  console.log(useGetUserByUsernameQuery(data.author));
-  console.log(user?.data);
-  const userData = null;
+
   const handleDeletePost = () => {
     trriger(id);
   };
