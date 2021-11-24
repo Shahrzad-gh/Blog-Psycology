@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 import { useGetPostByIdQuery } from "../../redux/postsApi";
 function Article({ username, description, photo }) {
   const location = useLocation();
-  console.log(location);
   const id = location.pathname.split("/")[2];
   const {
     data,
