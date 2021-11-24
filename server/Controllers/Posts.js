@@ -10,7 +10,7 @@ const handleError = (error) => {
 
 module.exports.addPost_post = async (req, res) => {
   let photo = { img: "", id: "" };
-  const { title, author, desc, categories } = req.body;
+  const { title, author, desc, categories, tags } = req.body;
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUDNAME,
     api_key: process.env.CLOUDINARY_APIKEY,
@@ -33,6 +33,7 @@ module.exports.addPost_post = async (req, res) => {
       desc,
       categories,
       photo,
+      tags,
     });
     res.status(200).json(newPost);
   } catch (err) {
@@ -62,7 +63,7 @@ module.exports.removePost_delete = async (req, res) => {
 module.exports.editPost_put = async (req, res) => {
   const postId = req.params.id;
   let photo = { img: "", id: "" };
-  const { title, author, desc, categories } = req.body;
+  const { title, author, desc, categories, tags } = req.body;
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUDNAME,
     api_key: process.env.CLOUDINARY_APIKEY,
@@ -83,7 +84,7 @@ module.exports.editPost_put = async (req, res) => {
         const newPost = await Post.findByIdAndUpdate(
           postId,
           {
-            $set: { title, author, desc, categories, photo },
+            $set: { title, author, desc, categories, photo, tags },
           },
           { new: true }
         );
@@ -96,7 +97,6 @@ module.exports.editPost_put = async (req, res) => {
       res.status(401).json("you should update your posts");
     }
   } catch (error) {
-    console.log("2", error);
     res.status(500).json(error);
   }
 };
