@@ -20,6 +20,7 @@ function Editpost(props) {
     title: props.editPost.title,
     author: props.editPost.author,
     photo: props.editPost.photo,
+    tags: props.editPost.tags,
   });
 
   const handleOnChange = (e) => {
@@ -62,15 +63,29 @@ function Editpost(props) {
       postData.append("categories", cat);
     }
     postData.append("photo", picture);
+    for (let tag of tags) {
+      postData.append("tags", tag);
+    }
     trigger({ id, postData }).then(() => {
       history.push(`/post/${id}`);
       window.location.reload();
     });
   };
   console.log(userInfo);
+
+  const [inputTag, setInptTag] = useState("");
+  const [tags, setTags] = useState([]);
+  const addTags = (e) => {
+    setInptTag(e.target.value);
+  };
+
+  const handleAddTags = (e) => {
+    e.preventDefault();
+    setTags([...tags, inputTag]);
+  };
   return (
     <div className="addPost">
-      <h1>ایجاد پست جدید</h1>
+      <h1>به روز رسانی پست </h1>
       <div className="postImage">
         <input
           type="file"
@@ -81,7 +96,7 @@ function Editpost(props) {
         />
         <label htmlFor="postImage">
           <i className="far fa-plus-square"></i>
-          &nbsp; اضافه کردن عکس عنوان
+          &nbsp; اصلاح عکس عنوان
         </label>
         {picture ? (
           <img className="postImg" src={url} alt="عکس" title="مقاله" />
@@ -105,32 +120,47 @@ function Editpost(props) {
             autoFocus={true}
             onChange={handleOnChange}
           />
+          <div className="cat">
+            <label className="selectCat">انتخاب موضوع:</label>
+            <input
+              type="checkbox"
+              id="body"
+              name="body"
+              value="جسم"
+              onChange={handleUpdateCat}
+            />
+            <label htmlFor="body">جسم</label>
+            <input
+              type="checkbox"
+              id="mind"
+              name="mind"
+              value="ذهن"
+              onChange={handleUpdateCat}
+            />
+            <label htmlFor="mind">ذهن</label>
+            <input
+              type="checkbox"
+              id="self"
+              name="self"
+              value="خویشتن"
+              onChange={handleUpdateCat}
+            />
+            <label htmlFor="self">خویشتن</label>
+          </div>
+          <div className="tag">
+            <label htmlFor="tags">اصلاح برچسب</label>
+            <input
+              className="tags"
+              id="tags"
+              type="text"
+              placeholder="برچسب"
+              onChange={addTags}
+            />
+            <button onClick={handleAddTags} className="addtag">
+              افزودن
+            </button>
+          </div>
         </div>
-        <label className="selectCat">انتخاب موضوع:</label>
-        <input
-          type="checkbox"
-          id="body"
-          name="body"
-          value="جسم"
-          onChange={handleUpdateCat}
-        />
-        <label htmlFor="body">جسم</label>
-        <input
-          type="checkbox"
-          id="mind"
-          name="mind"
-          value="ذهن"
-          onChange={handleUpdateCat}
-        />
-        <label htmlFor="mind">ذهن</label>
-        <input
-          type="checkbox"
-          id="self"
-          name="self"
-          value="خویشتن"
-          onChange={handleUpdateCat}
-        />
-        <label htmlFor="self">خویشتن</label>
 
         <div className="addFormGroup">
           <Editor
