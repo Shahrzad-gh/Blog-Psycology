@@ -13,7 +13,6 @@ function Settings({ username, email, photo, description }) {
     setPicture(e.target.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
   }
-  console.log(description);
   const [userInfo, setUserInfo] = useState({
     email: email,
     username: username,
@@ -86,44 +85,85 @@ function Settings({ username, email, photo, description }) {
               onChange={handleUploadImage}
             />
           </div>
-          <label htmlFor="username">نام کاربری</label>
-          <input
-            type="text"
-            id="username"
-            maxLength="10"
-            minLength="3"
-            name="username"
-            value={userInfo.username}
-            onChange={handleOnChange}
-          />
-          <label htmlFor="email">ایمیل</label>
-          <input
-            type="email"
-            id="email"
-            value={userInfo.email}
-            name="email"
-            onChange={handleOnChange}
-          />
-          <label htmlFor="password">رمز عبور</label>
-          <input
-            type="password"
-            id="pasword"
-            maxLength="6"
-            name="password"
-            value={userInfo.password}
-            onChange={handleOnChange}
-          />
-          <label htmlFor="desc">درباره من</label>
-          <textarea
-            id="desc"
-            maxLength="60"
-            name="description"
-            value={userInfo.description}
-            onChange={handleOnChange}
-          />
-          <button type="submit" className="settingdSubmit">
-            به روز رسانی
-          </button>
+          <div className="form-settings">
+            <div>
+              <label htmlFor="username">نام کاربری</label>
+              <input
+                type="text"
+                id="username"
+                maxLength="10"
+                minLength="3"
+                name="username"
+                value={userInfo.username}
+                onChange={handleOnChange}
+              />
+              <label htmlFor="email">ایمیل</label>
+              <input
+                type="email"
+                id="email"
+                value={userInfo.email}
+                name="email"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="password">رمز عبور</label>
+              <input
+                type="password"
+                id="pasword"
+                maxLength="6"
+                name="password"
+                value={userInfo.password}
+                onChange={handleOnChange}
+              />
+              <label htmlFor="desc">درباره من</label>
+              <textarea
+                id="desc"
+                maxLength="60"
+                name="description"
+                value={userInfo.description}
+                onChange={handleOnChange}
+              />
+              <button type="submit" className="settingdSubmit">
+                به روز رسانی
+              </button>
+            </div>
+            <div>
+              {/* <label htmlFor="">شبکه های اجتماعی</label> */}
+              <label htmlFor="instagram">اینستاگرام</label>
+              <input
+                style={{ width: "30vw" }}
+                type="text"
+                id="instagram"
+                name="instagram"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="instagram">فیسبوک</label>
+
+              <input
+                style={{ width: "30vw" }}
+                type="text"
+                id="facebook"
+                name="facebook"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="instagram">توئیتر</label>
+
+              <input
+                style={{ width: "30vw" }}
+                type="text"
+                id="twitter"
+                name="twitter"
+                onChange={handleOnChange}
+              />
+
+              <label htmlFor="desc">درباره سایت</label>
+              <textarea
+                id="about"
+                maxLength="60"
+                name="about"
+                onChange={handleOnChange}
+              />
+            </div>
+          </div>
         </form>
       </div>
       <Sidebar />
