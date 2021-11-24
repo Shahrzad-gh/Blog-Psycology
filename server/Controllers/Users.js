@@ -85,10 +85,7 @@ module.exports.getUserByUsername_get = async (req, res) => {
   const { username } = req.params;
   try {
     const user = await User.findOne({ username });
-    console.log(user);
     const { password, ...rest } = user._doc;
-    console.log(rest);
-
     res.status(200).json(rest);
   } catch (error) {
     console.log(error);
