@@ -22,15 +22,12 @@ function AddPost({ username }) {
     setUrl(URL.createObjectURL(e.target.files[0]));
   }
 
-  console.log(url);
   const handleOnChange = (e) => {
     setuserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
     });
   };
-
-  console.log(userInfo);
 
   let editorState = EditorState.createEmpty();
   const [description, setDescription] = useState(editorState);
@@ -62,12 +59,25 @@ function AddPost({ username }) {
       postData.append("categories", cat);
     }
     postData.append("photo", picture);
+    for (let tag of tags) {
+      postData.append("tags", tag);
+    }
     trigger(postData).then(() => {
       history.push(`/`);
       window.location.reload();
     });
   };
-  console.log(picture);
+  const [inputTag, setInptTag] = useState("");
+  const [tags, setTags] = useState([]);
+  const addTags = (e) => {
+    setInptTag(e.target.value);
+  };
+
+  const handleAddTags = (e) => {
+    e.preventDefault();
+    setTags([...tags, inputTag]);
+  };
+
   return (
     <div className="addPost">
       <h1>ایجاد پست جدید</h1>
@@ -83,7 +93,16 @@ function AddPost({ username }) {
           <i className="far fa-plus-square"></i>
           &nbsp; اضافه کردن عکس عنوان
         </label>
-        <img className="postImg" src={url} alt="عکس" title="مقاله" />
+        {url ? (
+          <img className="postImg" src={url} alt="عکس" title="مقاله" />
+        ) : (
+          <img
+            className="postImg"
+            src="https://res.cloudinary.com/dw8wf8gps/image/upload/v1637507302/default-text-effect_67638-192_sgvqyk.jpg"
+            alt="عکس"
+            title="مقاله"
+          />
+        )}
       </div>
       <form className="addForm" onSubmit={addDetails}>
         <div className="addFormGroup">
@@ -95,32 +114,47 @@ function AddPost({ username }) {
             autoFocus={true}
             onChange={handleOnChange}
           />
+          <div className="cat">
+            <label className="selectCat">انتخاب موضوع:</label>
+            <input
+              type="checkbox"
+              id="body"
+              name="body"
+              value="جسم"
+              onChange={handleAddCat}
+            />
+            <label htmlFor="body">جسم</label>
+            <input
+              type="checkbox"
+              id="mind"
+              name="mind"
+              value="ذهن"
+              onChange={handleAddCat}
+            />
+            <label htmlFor="mind">ذهن</label>
+            <input
+              type="checkbox"
+              id="self"
+              name="self"
+              value="خویشتن"
+              onChange={handleAddCat}
+            />
+            <label htmlFor="self">خویشتن</label>
+          </div>
+          <div className="tag">
+            <label htmlFor="tags">افزودن برچسب</label>
+            <input
+              className="tags"
+              id="tags"
+              type="text"
+              placeholder="برچسب"
+              onChange={addTags}
+            />
+            <button onClick={handleAddTags} className="addtag">
+              افزودن
+            </button>
+          </div>
         </div>
-        <label className="selectCat">انتخاب موضوع:</label>
-        <input
-          type="checkbox"
-          id="body"
-          name="body"
-          value="جسم"
-          onChange={handleAddCat}
-        />
-        <label htmlFor="body">جسم</label>
-        <input
-          type="checkbox"
-          id="mind"
-          name="mind"
-          value="ذهن"
-          onChange={handleAddCat}
-        />
-        <label htmlFor="mind">ذهن</label>
-        <input
-          type="checkbox"
-          id="self"
-          name="self"
-          value="خویشتن"
-          onChange={handleAddCat}
-        />
-        <label htmlFor="self">خویشتن</label>
 
         <div className="addFormGroup">
           <Editor
