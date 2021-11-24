@@ -5,6 +5,13 @@
 .addPost h1 {
   margin: 0 50px 50px 0;
 }
+.cat {
+  margin: 10px 0;
+}
+.tags {
+  margin: 10px;
+  width: 30vw !important;
+}
 .postImage {
   display: flex;
   flex-direction: column;
@@ -15,16 +22,17 @@
   padding: 10px;
 }
 .addPost .postImg {
-  width: 50vw;
+  width: 30vw;
   height: auto;
   object-fit: cover;
   border-radius: 5px;
 }
 .addForm {
   position: relative;
+  height: 100vh;
 }
 .selectCat {
-  margin-right: 150px;
+  /* margin-right: 150px; */
   padding: 10px;
 }
 .addForm label {
@@ -44,8 +52,8 @@
 .rdw-editor-main {
   border: 1px solid #f1f1f1;
   background-color: #fff;
-  height: 90%;
   padding: 10px;
+  height: 50vh !important;
 }
 .addImg {
   display: flex;
@@ -78,7 +86,7 @@ input[type="text"] {
   border-radius: 10px;
   border: 1px solid #cccccc;
   padding: 5px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 input[type="text"]:focus {
@@ -89,8 +97,20 @@ input[type="file"] {
 }
 .submitButton {
   position: absolute;
-  top: 15px;
+  bottom: 650px;
   left: 50px;
+  width: 20%;
+  color: #fff;
+  background-color: teal;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+.addtag {
   color: #fff;
   background-color: teal;
   border: none;
