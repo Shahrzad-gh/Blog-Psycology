@@ -62,10 +62,16 @@ function AddPost({ username }) {
     for (let tag of tags) {
       postData.append("tags", tag);
     }
-    trigger(postData).then(() => {
-      history.push(`/`);
-      window.location.reload();
-    });
+    trigger(postData)
+      .then((res) => {
+        if (res.error.data) {
+          alert(res.error.data.message);
+        } else if (res.data) {
+          history.push(`/`);
+          window.location.reload();
+        } else history.push(`/create`);
+      })
+      .catch((err) => history.push(`/create`));
   };
   const [inputTag, setInptTag] = useState("");
   const [tags, setTags] = useState([]);
