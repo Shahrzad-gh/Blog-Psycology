@@ -14,13 +14,22 @@ function SinglePost({ username, data, id }) {
   const handleDeletePost = () => {
     trriger(id);
   };
-
+  const imgName = data?.photo.img.split("/")[7];
+  const img = data?.photo.img.split("/").splice(0, 6);
+  img.push("h_400,w_600");
+  img.push(imgName);
+  console.log(data?.photo.img);
+  console.log(decodeURIComponent(img.join("/")));
   return (
     <div className="singlePost">
       {
         data && (
           <div className="singlePostWrapper">
-            <img src={data.photo.img} alt="عکس مقاله" title="عنوان مقاله" />
+            <img
+              src={decodeURIComponent(img.join("/"))}
+              alt="عکس مقاله"
+              title="عنوان مقاله"
+            />
             <h1 className="SinglePostTitle">
               {data.title}
               <div className="singlePostEdit">
