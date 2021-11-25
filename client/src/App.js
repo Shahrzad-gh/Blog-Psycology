@@ -20,7 +20,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  const { isSuccess, username, email, photo, description } =
+  const { isSuccess, username, email, photo, description, role } =
     useSelector(userSelector);
 
   useEffect(() => {
@@ -52,6 +52,7 @@ function App() {
                 email={email}
                 photo={photo}
                 description={description}
+                role={role}
               />
             ) : (
               <SignIn />
