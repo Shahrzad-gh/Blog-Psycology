@@ -40,12 +40,12 @@ const checkUser = (req, res, next) => {
   }
 };
 
-// const adminMiddleware = (req, res, next) => {
-//   //console.log(res.locals.user.role)
-//   if (res.locals.user.role !== "admin") {
-//     return res.status(400).json({ message: "Admin access denied" });
-//   }
-//   next();
-// };
+const adminMiddleware = (req, res, next) => {
+  //console.log(res.locals.user.role)
+  if (res.locals.user.role !== "admin") {
+    return res.status(400).json({ message: "Admin access denied" });
+  }
+  next();
+};
 
-module.exports = { checkUser };
+module.exports = { checkUser, adminMiddleware };
