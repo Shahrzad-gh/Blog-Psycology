@@ -1,11 +1,12 @@
 const Post = require("../Models/Post");
 const cloudinary = require("../utils/cloudinary");
-const handleError = (error) => {
-  let err = { message: "" };
+const handleError = (err) => {
+  let error = { message: "" };
 
-  if (error.code === 400) {
-    err.message = "File size too large";
+  if (err.http_code === 400) {
+    error.message = err.message;
   }
+  return error;
 };
 
 module.exports.addPost_post = async (req, res) => {
@@ -37,7 +38,9 @@ module.exports.addPost_post = async (req, res) => {
     });
     res.status(200).json(newPost);
   } catch (err) {
-    res.status(500).json(err);
+    const error = handleError(err);
+    console.log(err);
+    res.status(500).json(error);
   }
 };
 
@@ -91,12 +94,16 @@ module.exports.editPost_put = async (req, res) => {
         res.status(201).json(newPost);
       } catch (error) {
         const err = handleError(error);
+        console.log(err);
+
         res.status(500).json(err);
       }
     } else {
       res.status(401).json("you should update your posts");
     }
   } catch (error) {
+    console.log(error);
+
     res.status(500).json(error);
   }
 };
