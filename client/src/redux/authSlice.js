@@ -52,11 +52,18 @@ export const authSlice = createSlice({
     username: "",
     email: "",
     photo: "",
+    siteInfo: {
+      instagram: "",
+      facebook: "",
+      twitter: "",
+      about: "",
+    },
     isFetching: false,
     isSuccess: Cookies.get("token") ? true : false,
     isError: false,
     errorMessage: "",
     description: "",
+    role: "",
   },
   reducers: {
     // Reducer comes here
@@ -66,6 +73,7 @@ export const authSlice = createSlice({
       state.photo = "";
       state.isFetching = false;
       state.isSuccess = false;
+      state.role = "";
       state.isError = false;
       state.errorMessage = "";
       state.description = "";
@@ -77,6 +85,8 @@ export const authSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       state.email = payload?.email;
       state.username = payload?.username;
+      state.role = payload?.role;
+      //state.siteInfo = payload.siteInfo
       state.isFetching = false;
       state.photo = payload?.photo;
       state.isSuccess = payload ? true : false;
@@ -95,6 +105,7 @@ export const authSlice = createSlice({
       state.username = payload.username;
       state.photo = payload.photo;
       state.description = payload.description;
+      state.role = payload.role;
       state.isFetching = false;
       state.isSuccess = payload ? true : false;
       return state;
@@ -110,6 +121,9 @@ export const authSlice = createSlice({
     [logoutUser.fulfilled]: (state, { payload }) => {
       state.username = null;
       state.email = null;
+      state.role = null;
+      state.phoot = null;
+      state.description = null;
       state.isFetching = false;
       state.isSuccess = true;
       return state;
