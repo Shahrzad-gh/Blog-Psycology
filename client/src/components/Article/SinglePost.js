@@ -3,7 +3,7 @@ import { useDeletePostMutation } from "../../redux/postsApi";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGetUserByUsernameQuery } from "../../redux/userApi";
-function SinglePost({ username, data, id }) {
+function SinglePost({ username, data, id, role }) {
   const [
     trriger,
     // , result
@@ -14,12 +14,12 @@ function SinglePost({ username, data, id }) {
   const handleDeletePost = () => {
     trriger(id);
   };
+
   const imgName = data?.photo.img.split("/")[7];
   const img = data?.photo.img.split("/").splice(0, 6);
   img.push("h_400,w_600");
   img.push(imgName);
-  console.log(data?.photo.img);
-  console.log(decodeURIComponent(img.join("/")));
+
   return (
     <div className="singlePost">
       {
@@ -33,7 +33,7 @@ function SinglePost({ username, data, id }) {
             <h1 className="SinglePostTitle">
               {data.title}
               <div className="singlePostEdit">
-                {data.author === username ? (
+                {data.author === username || role === "admin" ? (
                   <>
                     <Link
                       to={{ pathname: `/edit`, state: { data } }}
