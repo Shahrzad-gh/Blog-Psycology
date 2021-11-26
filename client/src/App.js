@@ -9,6 +9,7 @@ import Settings from "./pages/Settings";
 import Edit from "./components/Posts/Edit";
 import axios from "axios";
 import { authUser, clearState, userSelector } from "./redux/authSlice";
+import { blogSelector, BlogInfo } from "./redux/blogSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import About from "./components/About/About";
@@ -23,12 +24,18 @@ function App() {
   const { isSuccess, username, email, photo, description, role } =
     useSelector(userSelector);
 
+  const { siteInfo } = useSelector(blogSelector);
+
   useEffect(() => {
     dispatch(clearState());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(authUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(BlogInfo());
   }, [dispatch]);
 
   return (
@@ -38,7 +45,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/post/:postId">
-            <Article username={username} />
+            <Article username={username} role={role} />
           </Route>
           <Route path="/create">
             {isSuccess ? <AddPost username={username} /> : <SignIn />}
@@ -53,6 +60,7 @@ function App() {
                 photo={photo}
                 description={description}
                 role={role}
+                siteInfo={siteInfo}
               />
             ) : (
               <SignIn />
