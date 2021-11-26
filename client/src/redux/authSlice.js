@@ -52,12 +52,6 @@ export const authSlice = createSlice({
     username: "",
     email: "",
     photo: "",
-    siteInfo: {
-      instagram: "",
-      facebook: "",
-      twitter: "",
-      about: "",
-    },
     isFetching: false,
     isSuccess: Cookies.get("token") ? true : false,
     isError: false,
@@ -86,7 +80,6 @@ export const authSlice = createSlice({
       state.email = payload?.email;
       state.username = payload?.username;
       state.role = payload?.role;
-      //state.siteInfo = payload.siteInfo
       state.isFetching = false;
       state.photo = payload?.photo;
       state.isSuccess = payload ? true : false;
