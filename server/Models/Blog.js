@@ -6,7 +6,11 @@ const BlogSchema = new mongoose.Schema({
   },
   subTitle: { type: String },
   name: { type: String },
-  photo: {
+  headerPhoto: {
+    img: { type: String },
+    id: { type: String },
+  },
+  aboutPhoto: {
     img: { type: String },
     id: { type: String },
   },
