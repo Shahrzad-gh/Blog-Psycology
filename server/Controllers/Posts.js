@@ -66,6 +66,7 @@ module.exports.removePost_delete = async (req, res) => {
 module.exports.editPost_put = async (req, res) => {
   const postId = req.params.id;
   let photo = { img: "", id: "" };
+  console.log(req.body);
   const { title, author, desc, categories, tags } = req.body;
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUDNAME,
