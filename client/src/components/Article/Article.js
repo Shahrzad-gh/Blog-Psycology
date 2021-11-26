@@ -5,7 +5,7 @@ import "./Article.css";
 import { useLocation } from "react-router-dom";
 
 import { useGetPostByIdQuery } from "../../redux/postsApi";
-function Article({ username, description, photo }) {
+function Article({ username, description, photo, role }) {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const {
@@ -15,7 +15,9 @@ function Article({ username, description, photo }) {
 
   return (
     <div className="article">
-      {data && <SinglePost data={data} id={id} username={username} />}
+      {data && (
+        <SinglePost data={data} role={role} id={id} username={username} />
+      )}
       <Sidebar />
     </div>
   );
