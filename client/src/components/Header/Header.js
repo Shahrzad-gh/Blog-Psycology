@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+function Header({ photo }) {
   return (
     <div className="header">
       <div className="titles">
@@ -10,7 +10,7 @@ function Header() {
 
       <img
         className="headerImg"
-        src="https://image.freepik.com/free-photo/diverse-people-supporting-group-session_53876-130270.jpg"
+        src={photo.headerPhoto}
         alt="وبلاگ روانشناسی"
         title="روانشناسی"
       />

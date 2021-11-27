@@ -6,16 +6,16 @@ import { useLocation } from "react-router-dom";
 
 import "./Home.css";
 
-function Home() {
+function Home({ data }) {
   const { search } = useLocation();
   // const { cat } = location ? location.state : null;
   return (
     <>
-      <Header />
+      <Header photo={data} />
 
       <div className="home">
         <Posts search={search} />
-        <Sidebar />
+        <Sidebar siteInfo={data} />
       </div>
     </>
   );
