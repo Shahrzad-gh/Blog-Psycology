@@ -26,7 +26,7 @@ function Settings({ username, email, photo, description, role, siteInfo }) {
     about: siteInfo.about,
     id: siteInfo.id,
   });
-  console.log(siteInfo);
+
   const handleOnChange = (e) => {
     setUserInfo({
       ...userInfo,
@@ -59,8 +59,8 @@ function Settings({ username, email, photo, description, role, siteInfo }) {
     e.preventDefault();
 
     siteTrigger({ site }).then((res) => {
-      // history.push(`/settings`);
-      // window.location.reload();
+      history.push(`/settings`);
+      window.location.reload();
     });
   };
 
@@ -193,8 +193,8 @@ function Settings({ username, email, photo, description, role, siteInfo }) {
                   <textarea
                     id="aboutSite"
                     maxLength="60"
-                    name="aboutSite"
-                    value={site.aboutSite}
+                    name="about"
+                    value={site.about}
                     onChange={handleOnSiteChange}
                   />
                   <button
