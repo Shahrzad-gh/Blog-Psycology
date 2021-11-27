@@ -24,7 +24,7 @@ function App() {
   const { isSuccess, username, email, photo, description, role } =
     useSelector(userSelector);
 
-  const { siteInfo } = useSelector(blogSelector);
+  const siteInfo = useSelector(blogSelector);
 
   useEffect(() => {
     dispatch(clearState());
@@ -43,7 +43,9 @@ function App() {
       <Router>
         <Navbar user={isSuccess} username={username} photo={photo} />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/">
+            <Home data={siteInfo} />
+          </Route>
           <Route path="/post/:postId">
             <Article username={username} role={role} />
           </Route>
