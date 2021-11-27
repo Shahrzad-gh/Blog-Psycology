@@ -4,7 +4,6 @@ import axios from "axios";
 export const BlogInfo = createAsyncThunk("blog/info", async (thunkAPI) => {
   try {
     const response = await axios.get("http://localhost:8080/api/blog/get");
-    console.log(response.data);
     return response.data;
   } catch (err) {
     if (!err.response) {
@@ -17,13 +16,13 @@ export const BlogInfo = createAsyncThunk("blog/info", async (thunkAPI) => {
 export const blogSlice = createSlice({
   name: "blog",
   initialState: {
-    siteInfo: {
-      id: "",
-      instagram: "",
-      facebook: "",
-      twitter: "",
-      about: "",
-    },
+    id: "",
+    instagram: "",
+    facebook: "",
+    twitter: "",
+    about: "",
+    headerPhoto: "",
+    aboutPhoto: "",
     isSuccess: false,
     isFetching: false,
     isError: false,
@@ -36,14 +35,13 @@ export const blogSlice = createSlice({
     [BlogInfo.fulfilled]: (state, { payload }) => {
       state.isSuccess = payload ? true : false;
       state.isFetching = false;
-      state.siteInfo = {
-        id: payload._id,
-        instagram: payload.socialLinks?.instagram,
-        facebook: payload?.socialLinks?.facebook,
-        twitter: payload?.socialLinks?.twitter,
-        about: payload?.about,
-      };
-
+      state.id = payload._id;
+      state.headerPhoto = payload.headerPhoto.img;
+      state.aboutPhoto = payload.aboutPhoto.img;
+      state.instagram = payload.socialLinks?.instagram;
+      state.facebook = payload.socialLinks?.facebook;
+      state.twitter = payload.socialLinks?.twitter;
+      state.about = payload.about;
       return state;
     },
     [BlogInfo.rejected]: (state, { payload }) => {
