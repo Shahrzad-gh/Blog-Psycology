@@ -1,17 +1,16 @@
 const Blog = require("../Models/Blog");
 
 module.exports.editBlog_put = async (req, res) => {
-  console.log(req.body);
-  const { instagram, facebook, twitter, about, id } = req.body;
+  const { about, id, instagram, facebook, twitter } = req.body.site;
+
   try {
-    const newBlog = await Blog.findOneAndUpdate(
+    const newBlog = await Blog.findByIdAndUpdate(
       id,
       {
-        $set: { about },
+        $set: { about, socialLinks: { instagram, facebook, twitter } },
       },
       { new: true }
     );
-    console.log("new", newBlog);
     res.status(200).json(newBlog);
   } catch (error) {
     console.log(error);
