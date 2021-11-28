@@ -10,7 +10,7 @@ import draftToHtml from "draftjs-to-html";
 import { useHistory } from "react-router-dom";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useEditPostMutation } from "../../redux/postsApi";
-
+import "./EditPost.css";
 function Editpost(props) {
   const history = useHistory();
   const [picture, setPicture] = useState();
@@ -22,6 +22,8 @@ function Editpost(props) {
     photo: props.editPost.photo,
     tags: props.editPost.tags,
   });
+
+  console.log(userInfo);
 
   const handleOnChange = (e) => {
     setuserInfo({
@@ -159,6 +161,13 @@ function Editpost(props) {
             <button onClick={handleAddTags} className="addtag">
               افزودن
             </button>
+            <div>
+              {userInfo.tags?.map((t, index) => (
+                <label className="tagsStyle" key={index}>
+                  {t}
+                </label>
+              ))}
+            </div>
           </div>
         </div>
 
