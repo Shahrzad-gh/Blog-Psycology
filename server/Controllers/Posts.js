@@ -88,7 +88,8 @@ module.exports.editPost_put = async (req, res) => {
         const newPost = await Post.findByIdAndUpdate(
           postId,
           {
-            $set: { title, author, desc, categories, photo, tags },
+            $set: { title, author, desc, photo },
+            $pull: { categories, tags },
           },
           { new: true }
         );
