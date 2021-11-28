@@ -18,7 +18,7 @@ function Article({ username, description, photo, role }) {
       {data && (
         <SinglePost data={data} role={role} id={id} username={username} />
       )}
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 }
