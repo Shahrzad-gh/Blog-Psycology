@@ -10,7 +10,7 @@ function SinglePost({ username, data, id, role }) {
   ] = useDeletePostMutation();
 
   const user = useGetUserByUsernameQuery(data.author);
-
+  console.log(data);
   const handleDeletePost = () => {
     trriger(id);
   };
