@@ -23,10 +23,12 @@ const PostSchema = new mongoose.Schema(
     categories: {
       type: Array,
       required: false,
+      unique: true,
     },
     tags: {
       type: Array,
       required: false,
+      unique: true,
     },
   },
   { timestamps: true }
