@@ -5,17 +5,17 @@ import Editpost from "./EditPost";
 import { useLocation } from "react-router";
 // import { Link } from "react-router-dom";
 
-const Edit = (props) => {
+const Edit = ({ role }) => {
   const location = useLocation();
   // const id = location.pathname.split("/")[2];
-  const { data } = location?.state || {};
+  const { postData } = location?.state || {};
 
   return (
     <div>
       {
-        data && (
+        postData && (
           <>
-            <Editpost editPost={data} />
+            <Editpost editPost={postData} role={role} />
           </>
         )
         //   : (

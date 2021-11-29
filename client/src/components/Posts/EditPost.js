@@ -11,20 +11,18 @@ import { useHistory } from "react-router-dom";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useEditPostMutation } from "../../redux/postsApi";
 import "./EditPost.css";
-function Editpost(props) {
+function Editpost({ editPost, role }) {
+  console.log(role);
   const history = useHistory();
   const [picture, setPicture] = useState();
   const [url, setUrl] = useState("");
 
   const [userInfo, setuserInfo] = useState({
-    title: props.editPost.title,
-    author: props.editPost.author,
-    photo: props.editPost.photo,
-    tags: props.editPost.tags,
+    title: editPost.title,
+    author: editPost.author,
+    photo: editPost.photo,
+    tags: editPost.tags,
   });
-
-  console.log(userInfo);
-
   const handleOnChange = (e) => {
     setuserInfo({
       ...userInfo,
@@ -37,7 +35,7 @@ function Editpost(props) {
   }
 
   let editorState = EditorState.createWithContent(
-    ContentState.createFromBlockArray(convertFromHTML(props.editPost.desc))
+    ContentState.createFromBlockArray(convertFromHTML(editPost.desc))
   );
   const [description, setDescription] = useState(editorState);
   const [categories, setCategories] = useState([]);
@@ -56,7 +54,7 @@ function Editpost(props) {
   };
   const updatePost = async (e) => {
     e.preventDefault();
-    const id = props.editPost._id;
+    const id = editPost._id;
     const postData = new FormData();
     postData.append("title", userInfo.title);
     postData.append("desc", userInfo.description.value);
@@ -68,15 +66,14 @@ function Editpost(props) {
     for (let tag of tags) {
       postData.append("tags", tag);
     }
-    trigger({ id, postData }).then(() => {
+    trigger({ id, postData, role }).then(() => {
       history.push(`/post/${id}`);
       window.location.reload();
     });
   };
-  console.log(userInfo);
 
   const [inputTag, setInptTag] = useState("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(userInfo.tags);
   const addTags = (e) => {
     setInptTag(e.target.value);
   };
