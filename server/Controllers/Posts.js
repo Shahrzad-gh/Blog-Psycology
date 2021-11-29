@@ -66,7 +66,6 @@ module.exports.removePost_delete = async (req, res) => {
 module.exports.editPost_put = async (req, res) => {
   const postId = req.params.id;
   let photo = { img: "", id: "" };
-  console.log(req.body);
   const { title, author, desc, categories, tags } = req.body;
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUDNAME,
@@ -76,7 +75,10 @@ module.exports.editPost_put = async (req, res) => {
   try {
     const post = await Post.findById(postId);
 
-    if (post.author.toLowerCase() === res.locals.user.username.toLowerCase()) {
+    if (
+      res.locals.user.role === "admin" ||
+      post.author.toLowerCase() === res.locals.user.username.toLowerCase()
+    ) {
       try {
         if (req.file !== undefined) {
           const result = await cloudinary.uploader.upload(req.file.path);
@@ -88,24 +90,19 @@ module.exports.editPost_put = async (req, res) => {
         const newPost = await Post.findByIdAndUpdate(
           postId,
           {
-            $set: { title, author, desc, photo },
-            $pull: { categories, tags },
+            $set: { title, author, desc, photo, categories, tags },
           },
           { new: true }
         );
         res.status(201).json(newPost);
       } catch (error) {
         const err = handleError(error);
-        console.log(err);
-
         res.status(500).json(err);
       }
     } else {
       res.status(401).json("you should update your posts");
     }
   } catch (error) {
-    console.log(error);
-
     res.status(500).json(error);
   }
 };
