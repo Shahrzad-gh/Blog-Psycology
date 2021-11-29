@@ -11,7 +11,7 @@ function Home({ data }) {
   // const { cat } = location ? location.state : null;
   return (
     <>
-      <Header photo={data} />
+      <Header siteInfo={data} />
 
       <div className="home">
         <Posts search={search} />

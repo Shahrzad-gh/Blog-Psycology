@@ -21,6 +21,9 @@ export const blogSlice = createSlice({
     facebook: "",
     twitter: "",
     about: "",
+    name: "",
+    title: "",
+    subTitle: "",
     headerPhoto: "",
     aboutPhoto: "",
     isSuccess: false,
@@ -42,6 +45,9 @@ export const blogSlice = createSlice({
       state.facebook = payload.socialLinks?.facebook;
       state.twitter = payload.socialLinks?.twitter;
       state.about = payload.about;
+      state.name = payload.name;
+      state.title = payload.title;
+      state.subTitle = payload.subTitle;
       return state;
     },
     [BlogInfo.rejected]: (state, { payload }) => {

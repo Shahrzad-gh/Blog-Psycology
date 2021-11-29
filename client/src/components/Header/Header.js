@@ -1,16 +1,18 @@
 import React from "react";
 
-function Header({ photo }) {
+function Header({ siteInfo }) {
+  console.log(siteInfo);
+  document.title = siteInfo.title;
   return (
     <div className="header">
       <div className="titles">
-        <span className="titleSm">جسم، ذهن، خویشتن</span>
-        <span className="titleLg">وبلاگ روانشناسی</span>
+        <span className="titleSm">{siteInfo.name}</span>
+        <span className="titleLg">{siteInfo.subTitle}</span>
       </div>
 
       <img
         className="headerImg"
-        src={photo.headerPhoto}
+        src={siteInfo?.headerPhoto}
         alt="وبلاگ روانشناسی"
         title="روانشناسی"
       />

@@ -34,6 +34,11 @@
   border-radius: 50%;
   object-fit: cover;
 }
+.headerPicture,
+.aboutPicture {
+  width: 100%;
+  object-fit: cover;
+}
 .inputImg {
   display: none;
 }
@@ -93,4 +98,18 @@ input {
 }
 .siteSubmit {
   background-color: tomato;
+}
+.settingsSitePicture .sitePicture {
+  border-radius: 0%;
+  width: 30vw;
+}
+
+.siteSettingPic {
+  position: absolute;
+  left: 255px;
+  margin-top: 10px;
+  background-color: gray;
+  padding: 8px;
+  border-radius: 50%;
+  color: white;
 }
