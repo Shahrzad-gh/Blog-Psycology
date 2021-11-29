@@ -1,13 +1,21 @@
 const Blog = require("../Models/Blog");
 
 module.exports.editBlog_put = async (req, res) => {
-  const { about, id, instagram, facebook, twitter } = req.body.site;
+  console.log("BODY", req.body.site);
+  const { about, id, instagram, facebook, twitter, name, title, subTitle } =
+    req.body.site;
 
   try {
     const newBlog = await Blog.findByIdAndUpdate(
       id,
       {
-        $set: { about, socialLinks: { instagram, facebook, twitter } },
+        $set: {
+          about,
+          socialLinks: { instagram, facebook, twitter },
+          name,
+          title,
+          subTitle,
+        },
       },
       { new: true }
     );
