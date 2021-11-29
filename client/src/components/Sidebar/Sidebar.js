@@ -11,8 +11,8 @@ function Sidebar({ siteInfo }) {
     <div className="sidebar">
       <div className="sidebarItem">
         <div className="sidebarTitle">درباره ما</div>
-        <img src={siteInfo.aboutPhoto} alt="پروفایل" />
-        <p>{siteInfo.about}</p>
+        <img src={siteInfo?.aboutPhoto} alt="پروفایل" />
+        <p>{siteInfo?.about}</p>
       </div>
       <div className="sidebarItem">
         <div className="sidebarTitle">موضوعات</div>
@@ -32,13 +32,13 @@ function Sidebar({ siteInfo }) {
       <div className="sidebarItem">
         <div className="sidebarTitle">ما را دنبال کنید</div>
         <div className="sidebarSocial">
-          <a href={`https://instagram.com/${siteInfo.instagram}`}>
+          <a href={`https://instagram.com/${siteInfo?.instagram}`}>
             <i className="sidebarIcon fab fa-instagram-square"></i>
           </a>
-          <a href={`https://facebook.com/${siteInfo.facebook}`}>
+          <a href={`https://facebook.com/${siteInfo?.facebook}`}>
             <i className="sidebarIcon fab fa-facebook-square"></i>
           </a>
-          <a href={`https://twitter.com/${siteInfo.twitter}`}>
+          <a href={`https://twitter.com/${siteInfo?.twitter}`}>
             <i className="sidebarIcon fab fa-twitter-square"></i>
           </a>
         </div>
