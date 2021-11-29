@@ -47,12 +47,14 @@ function App() {
             <Home data={siteInfo} />
           </Route>
           <Route path="/post/:postId">
-            <Article username={username} role={role} />
+            <Article username={username} role={role} siteInfo={siteInfo} />
           </Route>
           <Route path="/create">
             {isSuccess ? <AddPost username={username} /> : <SignIn />}
           </Route>
-          <Route path="/edit">{isSuccess ? <Edit /> : <SignIn />}</Route>
+          <Route path="/edit">
+            {isSuccess ? <Edit role={role} /> : <SignIn />}
+          </Route>
           <Route path="/signin" component={SignIn} />
           <Route path="/settings">
             {isSuccess ? (
@@ -68,7 +70,7 @@ function App() {
               <SignIn />
             )}
           </Route>
-          <Route path="/about" component={About} />
+          <Route path="/about" component={About} data={siteInfo} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
         </Switch>

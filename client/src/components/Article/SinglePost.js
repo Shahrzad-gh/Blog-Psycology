@@ -3,27 +3,26 @@ import { useDeletePostMutation } from "../../redux/postsApi";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGetUserByUsernameQuery } from "../../redux/userApi";
-function SinglePost({ username, data, id, role }) {
+function SinglePost({ username, id, role, postData }) {
   const [
     trriger,
     // , result
   ] = useDeletePostMutation();
 
-  const user = useGetUserByUsernameQuery(data.author);
-  console.log(data);
+  const user = useGetUserByUsernameQuery(postData.author);
   const handleDeletePost = () => {
     trriger(id);
   };
 
-  const imgName = data?.photo.img.split("/")[7];
-  const img = data?.photo.img.split("/").splice(0, 6);
+  const imgName = postData?.photo.img.split("/")[7];
+  const img = postData?.photo.img.split("/").splice(0, 6);
   img.push("h_400,w_600");
   img.push(imgName);
 
   return (
     <div className="singlePost">
       {
-        data && (
+        postData && (
           <div className="singlePostWrapper">
             <img
               src={decodeURIComponent(img.join("/"))}
@@ -31,12 +30,12 @@ function SinglePost({ username, data, id, role }) {
               title="عنوان مقاله"
             />
             <h1 className="SinglePostTitle">
-              {data.title}
+              {postData.title}
               <div className="singlePostEdit">
-                {data.author === username || role === "admin" ? (
+                {postData.author === username || role === "admin" ? (
                   <>
                     <Link
-                      to={{ pathname: `/edit`, state: { data } }}
+                      to={{ pathname: `/edit`, state: { postData } }}
                       className="singlePostIcon"
                     >
                       <i className=" far fa-edit"></i>
@@ -55,22 +54,22 @@ function SinglePost({ username, data, id, role }) {
               <span className="singlePostAuthor">
                 نویسنده:
                 <Link
-                  to={{ pathname: `/`, search: `user=${data.author}` }}
+                  to={{ pathname: `/`, search: `user=${postData.author}` }}
                   className="link"
                 >
-                  <b>{data.author}</b>
+                  <b>{postData.author}</b>
                 </Link>
               </span>
               <span className="singlePostDate">
-                ایجاد {moment(data.createdAt).calendar()}
+                ایجاد {moment(postData.createdAt).calendar()}
               </span>
               <span className="singlePostDate">
-                به روز رسانی {moment(data.updatedAt).calendar()}
+                به روز رسانی {moment(postData.updatedAt).calendar()}
               </span>
             </div>
             <p
               className="singlePosDescription"
-              dangerouslySetInnerHTML={{ __html: data.desc }}
+              dangerouslySetInnerHTML={{ __html: postData.desc }}
             />
             <div className="postTags">
               <p className="postTagItem">جسم</p>
