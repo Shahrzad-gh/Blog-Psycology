@@ -11,10 +11,10 @@ export const blogApi = createApi({
       query: (id) => `get/${id}`,
     }),
     editBlog: builder.mutation({
-      query: (site) => ({
+      query: ({ siteData }) => ({
         url: `edit`,
         method: "PUT",
-        body: site,
+        body: siteData,
       }),
     }),
   }),

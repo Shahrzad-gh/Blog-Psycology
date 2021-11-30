@@ -25,6 +25,7 @@ function Settings({ username, email, photo, description, role, siteInfo }) {
     setPicture(e.target.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
   }
+
   const [userInfo, setUserInfo] = useState({
     email: email,
     username: username,
@@ -71,11 +72,21 @@ function Settings({ username, email, photo, description, role, siteInfo }) {
   };
 
   const [siteTrigger] = useEditBlogMutation();
-
+  console.log(siteInfo);
   const handleSiteSettings = (e) => {
     e.preventDefault();
-
-    siteTrigger({ site }).then((res) => {
+    const siteData = new FormData();
+    siteData.append("id", siteInfo.id);
+    siteData.append("name", site.name);
+    siteData.append("title", site.title);
+    siteData.append("subTitle", site.subTitle);
+    siteData.append("about", site.about);
+    siteData.append("instagram", site.instagram);
+    siteData.append("facebook", site.facebook);
+    siteData.append("twitter", site.twitter);
+    siteData.append("photo", headerPicture);
+    siteData.append("photo", aboutPicture);
+    siteTrigger({ siteData }).then(() => {
       history.push(`/settings`);
       window.location.reload();
     });
