@@ -1,7 +1,6 @@
 import React from "react";
 
 function Header({ siteInfo }) {
-  console.log(siteInfo);
   document.title = siteInfo.title;
   return (
     <div className="header">

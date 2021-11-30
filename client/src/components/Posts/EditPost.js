@@ -12,7 +12,6 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useEditPostMutation } from "../../redux/postsApi";
 import "./EditPost.css";
 function Editpost({ editPost, role }) {
-  console.log(role);
   const history = useHistory();
   const [picture, setPicture] = useState();
   const [url, setUrl] = useState("");

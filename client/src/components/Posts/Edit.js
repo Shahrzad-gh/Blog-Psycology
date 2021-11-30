@@ -1,15 +1,9 @@
 import React from "react";
-// import axios from "axios";
 import Editpost from "./EditPost";
-// import { useEditPostMutation } from "../../redux/postsApi";
-import { useLocation } from "react-router";
-// import { Link } from "react-router-dom";
 
 const Edit = ({ role }) => {
-  const location = useLocation();
-  // const id = location.pathname.split("/")[2];
-  const { postData } = location?.state || {};
-
+  const data = localStorage.getItem("postData");
+  const postData = JSON.parse(data);
   return (
     <div>
       {

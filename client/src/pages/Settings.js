@@ -72,7 +72,7 @@ function Settings({ username, email, photo, description, role, siteInfo }) {
   };
 
   const [siteTrigger] = useEditBlogMutation();
-  console.log(siteInfo);
+
   const handleSiteSettings = (e) => {
     e.preventDefault();
     const siteData = new FormData();

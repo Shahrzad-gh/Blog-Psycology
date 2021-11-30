@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGetUserByUsernameQuery } from "../../redux/userApi";
 function SinglePost({ username, id, role, postData }) {
+  localStorage.setItem("postData", JSON.stringify(postData));
   const [
     trriger,
     // , result
