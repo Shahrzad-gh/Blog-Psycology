@@ -71,7 +71,9 @@ function App() {
             )}
           </Route>
           <Route path="/about" component={About} data={siteInfo} />
-          <Route path="/contact" component={Contact} />
+          <Route path="/contact">
+            <Contact siteInfo={siteInfo} />
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </Router>

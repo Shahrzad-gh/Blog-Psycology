@@ -2,7 +2,7 @@ import React from "react";
 import "./Contact.css";
 import Sidebar from "../Sidebar/Sidebar";
 
-function Contact() {
+function Contact({ siteInfo }) {
   const handleSendMessage = (e) => {
     e.preventDefault();
   };
@@ -25,7 +25,7 @@ function Contact() {
           /> */}
         </>
       </div>
-      <Sidebar />
+      <Sidebar siteInfo={siteInfo} />
     </div>
   );
 }
