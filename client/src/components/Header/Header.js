@@ -5,8 +5,8 @@ function Header({ siteInfo }) {
   return (
     <div className="header">
       <div className="titles">
-        <span className="titleSm">{siteInfo.name}</span>
-        <span className="titleLg">{siteInfo.subTitle}</span>
+        <span className="titleLg">{siteInfo.name}</span>
+        <span className="titleSm">{siteInfo.subTitle}</span>
       </div>
 
       <img

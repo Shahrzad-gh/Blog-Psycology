@@ -26,6 +26,7 @@ function SinglePost({ username, id, role, postData }) {
         postData && (
           <div className="singlePostWrapper">
             <img
+              className="img-title"
               src={decodeURIComponent(img.join("/"))}
               alt="عکس مقاله"
               title="عنوان مقاله"
@@ -53,7 +54,7 @@ function SinglePost({ username, id, role, postData }) {
             </h1>
             <div className="singlePostInfo">
               <span className="singlePostAuthor">
-                نویسنده:
+                نویسنده :
                 <Link
                   to={{ pathname: `/`, search: `user=${postData.author}` }}
                   className="link"
@@ -62,10 +63,10 @@ function SinglePost({ username, id, role, postData }) {
                 </Link>
               </span>
               <span className="singlePostDate">
-                ایجاد {moment(postData.createdAt).calendar()}
+                ایجاد : {moment(postData.createdAt).calendar()}
               </span>
               <span className="singlePostDate">
-                به روز رسانی {moment(postData.updatedAt).calendar()}
+                به روز رسانی : {moment(postData.updatedAt).calendar()}
               </span>
             </div>
             <p

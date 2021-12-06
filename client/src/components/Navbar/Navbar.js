@@ -9,10 +9,12 @@ export default function Navbar({ user, username, photo }) {
     <div className="nav">
       <div className="navbar">
         <ul>
+          <li className="menu-icon">
+            <i className="fas fa-bars"></i>
+          </li>
           <li>
             <Link to="/">خانه</Link>
           </li>
-
           <li>
             <Link to="/about">درباره ما</Link>
           </li>
