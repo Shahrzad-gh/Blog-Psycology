@@ -1,6 +1,7 @@
 .article {
   display: flex;
   direction: rtl;
+  flex-direction: row;
 }
 .singlePost {
   flex: 9;
@@ -8,6 +9,7 @@
 
 .singlePostWrapper {
   padding: 20px;
+  margin: 50px;
   text-align: center;
 }
 
@@ -86,10 +88,59 @@
   text-align: justify;
   font-size: 12px;
   margin-right: 10px;
+  width: 50%;
+  overflow-wrap: anywhere;
 }
 .authorImg {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .article {
+    flex-direction: column;
+  }
+  .singlePostInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .singlePostWrapper {
+    margin: 20px;
+  }
+  .aboutAuthor {
+    width: 85%;
+  }
+  .singlePostWrapper .img-title {
+    width: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .article {
+    flex-direction: column;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .article {
+    flex-direction: column;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .article {
+    flex-direction: column;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .article {
+    flex-direction: row;
+  }
 }

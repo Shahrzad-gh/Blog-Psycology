@@ -1,5 +1,6 @@
 .home {
   display: flex;
+  flex-direction: row;
   direction: rtl;
 }
 .header {
@@ -17,14 +18,16 @@
   top: 18%;
   font-size: 20px;
 }
-.titleSm {
+.titleLg {
+  text-align: center;
   position: absolute;
   top: 22%;
   font-size: 80px;
+  text-shadow: 0 0 #fff;
 }
 .headerImg {
   width: 100%;
-  height: 450px;
+  height: calc(100vh - 214px);
   margin-top: 80px;
   object-fit: cover;
 }
@@ -99,4 +102,64 @@
   font-size: 16px;
   margin-left: 10px;
   cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .titleLg {
+    top: 25%;
+    font-size: 30px;
+  }
+  .titleSm {
+    top: 20%;
+    font-size: 10px;
+  }
+  .headerImg {
+    margin-top: 50px;
+    height: calc(100vh - 185px);
+  }
+  .home {
+    flex-direction: column;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .headerImg {
+    margin-top: 50px;
+    height: calc(100vh - 183px);
+  }
+  .home {
+    flex-direction: column;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .headerImg {
+    margin-top: 50px;
+    height: calc(100vh - 183px);
+  }
+  .home {
+    flex-direction: column;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .headerImg {
+    margin-top: 50px;
+    height: calc(100vh - 144px);
+  }
+  .home {
+    flex-direction: row;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .headerImg {
+    margin-top: 80px;
+    height: calc(100vh - 183px);
+  }
 }
