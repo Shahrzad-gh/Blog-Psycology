@@ -50,7 +50,7 @@
   height: 30vh;
 }
 .rdw-editor-main {
-  border: 1px solid #f1f1f1;
+  border: 2px solid #f1f1f1;
   background-color: #fff;
   padding: 10px;
   height: 50vh !important;
@@ -120,4 +120,63 @@ input[type="file"] {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
   cursor: pointer;
+  width: 30vw;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row;
+}
+.tag input {
+  width: 30vw;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .submitButton {
+    bottom: 800px;
+  }
+  .addFormGroup {
+    margin-right: 80px;
+  }
+  .cat label {
+    font-size: 10px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .submitButton {
+    bottom: 800px;
+  }
+  .addFormGroup {
+    margin-right: 80px;
+  }
+  .cat label {
+    font-size: 12px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .submitButton {
+    bottom: 800px;
+  }
+  .addFormGroup {
+    margin-right: 80px;
+  }
+  .cat label {
+    font-size: 16px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .addFormGroup {
+    margin-right: 150px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }
