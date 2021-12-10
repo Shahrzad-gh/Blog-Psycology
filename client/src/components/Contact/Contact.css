@@ -73,6 +73,12 @@ textarea {
   .contact {
     flex-direction: column;
     padding: 20px 0px;
+    width: 70vw;
+  }
+  .contact input,
+  textarea,
+  button {
+    width: 100%;
   }
 }
 
