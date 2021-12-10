@@ -45,3 +45,58 @@ textarea {
 .contactform input {
   width: 30vw;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .contactPage {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact {
+    flex-direction: column;
+    padding: 20px 0px;
+    width: 70vw;
+  }
+  .contact input,
+  textarea,
+  button {
+    width: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .contactPage {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact {
+    flex-direction: column;
+    padding: 20px 0px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .contactPage {
+    flex-direction: row;
+    align-items: unset;
+  }
+  .contact {
+    flex-direction: row;
+
+    padding: 20px 50px 0 0;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .contactPage {
+    flex-direction: row;
+    align-items: unset;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
