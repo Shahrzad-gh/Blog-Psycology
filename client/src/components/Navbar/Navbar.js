@@ -27,37 +27,39 @@ export default function Navbar({ user, username, photo }) {
   };
 
   return (
-    <div className="nav">
-      <a href={void 0} className="menu-icon" onClick={handleMobileMenu}>
-        <i className="fa fa-bars"></i>
-      </a>
-      <div className="navbar">
-        <ul>
-          <li>
-            <Link to="/">خانه</Link>
-          </li>
-          <li>
-            <Link to="/about">درباره ما</Link>
-          </li>
-          <li>
-            <Link to="/contact"> تماس با ما</Link>
-          </li>
-          <div className="mobile-links">
+    <div className="nav-container">
+      <div className="nav">
+        <a href={void 0} className="menu-icon" onClick={handleMobileMenu}>
+          <i className="fa fa-bars"></i>
+        </a>
+        <div className="navbar">
+          <ul>
             <li>
-              <Link to="/create">مقاله جدید</Link>
+              <Link to="/">خانه</Link>
             </li>
             <li>
-              <Link to="/signout"> خروج </Link>
+              <Link to="/about">درباره ما</Link>
             </li>
-          </div>
-        </ul>
-      </div>
-      <div className="links">
-        {user ? (
-          <SignInLinks username={username} photo={photo} />
-        ) : (
-          <SignOutLinks />
-        )}
+            <li>
+              <Link to="/contact"> تماس با ما</Link>
+            </li>
+            <div className="mobile-links">
+              <li>
+                <Link to="/create">مقاله جدید</Link>
+              </li>
+              <li>
+                <Link to="/signout"> خروج </Link>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <div className="links">
+          {user ? (
+            <SignInLinks username={username} photo={photo} />
+          ) : (
+            <SignOutLinks />
+          )}
+        </div>
       </div>
     </div>
   );
