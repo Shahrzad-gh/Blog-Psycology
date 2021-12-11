@@ -163,3 +163,27 @@
     height: calc(100vh - 183px);
   }
 }
+
+@media only screen and (min-width: 2560px) {
+  .headerImg {
+    margin-top: 80px;
+    height: calc(100vh - 200px);
+  }
+  .titleLg {
+    top: 15%;
+    font-size: 80px;
+  }
+  .titleSm {
+    top: 10%;
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  .titleLg {
+    top: 40%;
+  }
+  .titleSm {
+    top: 35%;
+  }
+}
