@@ -3,7 +3,11 @@ import { useDeletePostMutation } from "../../redux/postsApi";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGetUserByUsernameQuery } from "../../redux/userApi";
+import { useHistory } from "react-router-dom";
+
 function SinglePost({ username, id, role, postData }) {
+  const history = useHistory();
+
   localStorage.setItem("postData", JSON.stringify(postData));
   const [
     trriger,
@@ -12,7 +16,11 @@ function SinglePost({ username, id, role, postData }) {
 
   const user = useGetUserByUsernameQuery(postData.author);
   const handleDeletePost = () => {
-    trriger(id);
+    trriger(id).then((res) => {
+      alert(JSON.stringify(res.data));
+      history.push(`/`);
+      window.location.reload();
+    });
   };
 
   const imgName = postData?.photo.img.split("/")[7];
