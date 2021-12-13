@@ -49,7 +49,10 @@ module.exports.removePost_delete = async (req, res) => {
 
   try {
     const post = await Post.findById(postId);
-    if (post.author.toLowerCase() === res.locals.user.username.toLowerCase()) {
+    if (
+      res.locals.user.role === "admin" ||
+      post.author.toLowerCase() === res.locals.user.username.toLowerCase()
+    ) {
       try {
         await post.delete();
         res.status(201).json("post has been deleted!");
