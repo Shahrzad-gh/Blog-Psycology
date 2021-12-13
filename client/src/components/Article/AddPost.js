@@ -122,30 +122,32 @@ function AddPost({ username }) {
           />
           <div className="cat">
             <label className="selectCat">انتخاب موضوع:</label>
-            <input
-              type="checkbox"
-              id="body"
-              name="body"
-              value="جسم"
-              onChange={handleAddCat}
-            />
-            <label htmlFor="body">جسم</label>
-            <input
-              type="checkbox"
-              id="mind"
-              name="mind"
-              value="ذهن"
-              onChange={handleAddCat}
-            />
-            <label htmlFor="mind">ذهن</label>
-            <input
-              type="checkbox"
-              id="self"
-              name="self"
-              value="خویشتن"
-              onChange={handleAddCat}
-            />
-            <label htmlFor="self">خویشتن</label>
+            <div className="categories-item">
+              <input
+                type="checkbox"
+                id="body"
+                name="body"
+                value="جسم"
+                onChange={handleAddCat}
+              />
+              <label htmlFor="body">جسم</label>
+              <input
+                type="checkbox"
+                id="mind"
+                name="mind"
+                value="ذهن"
+                onChange={handleAddCat}
+              />
+              <label htmlFor="mind">ذهن</label>
+              <input
+                type="checkbox"
+                id="self"
+                name="self"
+                value="خویشتن"
+                onChange={handleAddCat}
+              />
+              <label htmlFor="self">خویشتن</label>
+            </div>
           </div>
           <div className="tag">
             <label htmlFor="tags">افزودن برچسب</label>
@@ -159,6 +161,11 @@ function AddPost({ username }) {
             <button onClick={handleAddTags} className="addtag">
               افزودن
             </button>
+          </div>
+          <div className="showtag">
+            {tags?.map((t) => (
+              <label className="tag-style">{t}</label>
+            ))}
           </div>
         </div>
 
