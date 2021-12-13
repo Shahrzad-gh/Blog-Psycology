@@ -29,9 +29,9 @@ export default function Navbar({ user, username, photo }) {
   return (
     <div className="nav-container">
       <div className="nav">
-        <a href={void 0} className="menu-icon" onClick={handleMobileMenu}>
+        <button className="menu-icon" onClick={handleMobileMenu}>
           <i className="fa fa-bars"></i>
-        </a>
+        </button>
         <div className="navbar">
           <ul>
             <li>

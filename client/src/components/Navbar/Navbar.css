@@ -25,6 +25,9 @@
 .menu-icon {
   display: none;
   z-index: 1;
+  border: none;
+  padding-top: 20px;
+  background: transparent;
   margin-right: 20px !important;
 }
 a {
