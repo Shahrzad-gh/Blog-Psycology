@@ -33,7 +33,7 @@ function SignInLinks({ photo, username }) {
         <Link to="/create">مقاله جدید</Link>
       </li>
 
-      <li className="btn" onClick={handleSignout}>
+      <li className="btn-signout" onClick={handleSignout}>
         خروج
       </li>
     </ul>

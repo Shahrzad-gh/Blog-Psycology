@@ -60,7 +60,8 @@ li {
   background-size: cover;
 }
 
-.links .btn {
+.links .btn-signin,
+.btn-signout {
   padding: 5px 10px 10px 10px;
   border-radius: 5px;
   border: 1px solid #2b133b2b;
@@ -81,7 +82,7 @@ li {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .navbar,
-  .btn,
+  .btn-signout,
   .btnAdd {
     display: none;
   }
@@ -100,14 +101,15 @@ li {
   .menu-icon {
     font-size: 15px !important;
     display: block;
-    width: fit-content;
+    width: fit-content !important;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .links .btnAdd,
-  .btn {
+  .btn-signin,
+  .btn-signout {
     font-size: 12px;
   }
   .mobile-links {
@@ -121,7 +123,8 @@ li {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .links .btnAdd,
-  .btn {
+  .btn-signin,
+  .btn-signout {
     font-size: 16px;
   }
 }
