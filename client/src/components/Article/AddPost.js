@@ -112,14 +112,17 @@ function AddPost({ username }) {
       </div>
       <form className="addForm" onSubmit={addDetails}>
         <div className="addFormGroup">
-          <input
-            name="title"
-            type="text"
-            id="postTitle"
-            placeholder="عنوان"
-            autoFocus={true}
-            onChange={handleOnChange}
-          />
+          <div>
+            <input
+              name="title"
+              type="text"
+              id="postTitle"
+              placeholder="عنوان"
+              autoFocus={true}
+              onChange={handleOnChange}
+            />
+            <button className="submitButton"> انتشار پست</button>
+          </div>
           <div className="cat">
             <label className="selectCat">انتخاب موضوع:</label>
             <div className="categories-item">
@@ -184,7 +187,6 @@ function AddPost({ username }) {
             value={draftToHtml(convertToRaw(description.getCurrentContent()))}
           />
         </div>
-        <button className="submitButton">انتشار</button>
       </form>
     </div>
   );
