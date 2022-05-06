@@ -82,9 +82,8 @@ function SinglePost({ username, id, role, postData }) {
               dangerouslySetInnerHTML={{ __html: postData.desc }}
             />
             <div className="postTags">
-              <p className="postTagItem">جسم</p>
-              <p className="postTagItem">روانشناسی</p>
-              <p className="postTagItem">آرامش</p>
+              {postData?.tags.map((tag) => (<p className="postTagItem">{tag}</p>
+              ))}
             </div>
             <div className="aboutAuthor">
               {user.data ? (
