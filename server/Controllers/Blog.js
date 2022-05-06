@@ -4,7 +4,6 @@ const cloudinary = require("../utils/cloudinary");
 module.exports.editBlog_put = async (req, res) => {
   let headerPhoto = { img: "", id: "" };
   let aboutPhoto = { img: "", id: "" };
-  console.log(req.body);
   const { about, id, name, title, subTitle, instagram, facebook, twitter } =
     req.body;
   cloudinary.config({
@@ -51,7 +50,6 @@ module.exports.editBlog_put = async (req, res) => {
           },
           { new: true }
         );
-        console.log(newBlog);
         res.status(201).json(newBlog);
       } catch (error) {
         // const err = handleError(error);
