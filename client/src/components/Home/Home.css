@@ -3,9 +3,11 @@
   flex-direction: row;
   direction: rtl;
 }
+
 .header {
   margin-top: 60px;
 }
+
 .titles {
   display: flex;
   flex-direction: column;
@@ -13,11 +15,13 @@
   color: #444;
   font-family: "Almarai", sans-serif;
 }
+
 .titleSm {
   position: absolute;
   top: 18%;
   font-size: 20px;
 }
+
 .titleLg {
   text-align: center;
   position: absolute;
@@ -25,6 +29,7 @@
   font-size: 80px;
   text-shadow: 0 0 #fff;
 }
+
 .headerImg {
   width: 100%;
   height: calc(100vh - 214px);
@@ -35,9 +40,11 @@
 .main {
   display: flex;
 }
+
 .posts {
   flex-grow: 9;
 }
+
 .sidebar {
   flex: 3;
   height: fit-content;
@@ -48,12 +55,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid lightgrey;
 }
+
 .sidebarItem {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .sidebarTitle {
   margin: 10px;
   margin: 10px;
@@ -69,13 +79,14 @@
   text-align: center;
 }
 
-.sidebarItem > img {
+.sidebarItem>img {
   margin-top: 15px;
   width: 250px;
   height: 250px;
   object-fit: cover;
 }
-.sidebarItem > p {
+
+.sidebarItem>p {
   padding: 30px;
 }
 
@@ -84,6 +95,7 @@
   padding-inline-end: 0;
   margin-bottom: 30px;
 }
+
 .sidebarListItem {
   width: 50%;
   margin-top: 15px;
@@ -110,14 +122,17 @@
     top: 25%;
     font-size: 30px;
   }
+
   .titleSm {
     top: 20%;
     font-size: 10px;
   }
+
   .headerImg {
     margin-top: 50px;
     height: calc(100vh - 185px);
   }
+
   .home {
     flex-direction: column;
   }
@@ -129,6 +144,7 @@
     margin-top: 50px;
     height: calc(100vh - 183px);
   }
+
   .home {
     flex-direction: column;
   }
@@ -140,6 +156,7 @@
     margin-top: 50px;
     height: calc(100vh - 183px);
   }
+
   .home {
     flex-direction: column;
   }
@@ -151,6 +168,7 @@
     margin-top: 50px;
     height: calc(100vh - 144px);
   }
+
   .home {
     flex-direction: row;
   }
@@ -169,10 +187,12 @@
     margin-top: 80px;
     height: calc(100vh - 200px);
   }
+
   .titleLg {
     top: 15%;
     font-size: 80px;
   }
+
   .titleSm {
     top: 10%;
     font-size: 40px;
@@ -183,15 +203,18 @@
   .titleLg {
     top: 15%;
   }
+
   .titleSm {
     top: 10%;
   }
 }
+
 @media only screen and (max-device-width: 1024px) and (orientation: landscape) {
   .titleLg {
     top: 30%;
     font-size: 25px;
   }
+
   .titleSm {
     top: 20%;
     font-size: 15px;
